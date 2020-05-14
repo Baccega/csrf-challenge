@@ -10,29 +10,40 @@ import ChatMessagges from "./ChatMessagges";
 
 export default function App() {
   const [message, setMessage] = React.useState("");
-  const [messages, setMessages] = React.useState([
-    {
-      sender: "me",
-      text: "From me",
-      // date: Date.now()
-    },
-    {
-      sender: "gary",
-      text: "Test message 2",
-      // date: Date.now()
-    },
-  ]);
+  const [messages, setMessages] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const handleMessageChange = (event) => setMessage(event.target.value);
-  const handleMessageSend = (event) => {
+  const handleMessageSend = async (event) => {
     event.preventDefault();
-    const composedMessage = {
-      text: message,
-      sender: "me",
-    };
-    //TODO send backend
-    setMessages((prev) => [composedMessage, ...prev]);
-    setMessage("");
+    if (!loading) {
+      setLoading(true);
+      const composedMessage = {
+        text: message,
+        sender: "me",
+      };
+      setMessages((prev) => [composedMessage, ...prev]);
+      setMessage("");
+
+      try {
+        const res = await fetch("http://localhost:3000/chat/gary", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(composedMessage),
+        });
+        const response = await res.text();
+        const responseMessage = {
+          text: response,
+          sender: "gary",
+        };
+        setMessages((prev) => [responseMessage, ...prev]);
+      } catch (e) {
+        console.error(e);
+      }
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,6 +57,7 @@ export default function App() {
       chatMessagges={<ChatMessagges messages={messages} />}
       chatInput={
         <ChatInput
+          loading={loading}
           message={message}
           onMessageSend={handleMessageSend}
           onMessageChange={handleMessageChange}

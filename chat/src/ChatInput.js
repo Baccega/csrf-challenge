@@ -12,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatInput({ message, onMessageChange, onMessageSend }) {
+export default function ChatInput({
+  message,
+  onMessageChange,
+  onMessageSend,
+  loading,
+}) {
   const classes = useStyles();
 
   return (
@@ -28,7 +33,7 @@ export default function ChatInput({ message, onMessageChange, onMessageSend }) {
       />
       <IconButton
         type="submit"
-        disabled={message === ""}
+        disabled={message === "" || loading}
         className={classes.sendButton}
       >
         <SendIcon />
