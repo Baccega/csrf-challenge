@@ -1,0 +1,10 @@
+{
+  "name": "game-backend",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Sandro Baccega",
+  "license": "MIT"
+}
