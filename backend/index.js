@@ -1,33 +1,19 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const fastify = require("fastify")({ logger: true });
 
-const SERVER_PORT = 3000;
-const GAME_PORT = 5501;
-const CHAT_PORT = 5501;
+fastify.register(require("fastify-cors"), {});
 
-const urlExpression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-const urlRegexp = new RegExp(urlExpression);
+const apiPrefix = { prefix: "/api" };
 
-app.use(cors());
-app.use(bodyParser.json({ limit: "5mb" }));
+fastify.register(require("./routes/auth"), apiPrefix);
+fastify.register(require("./routes/chat"), apiPrefix);
 
-app.get("/", (req, res) => res.send("Server ready"));
-
-app.post("/chat/gary", (req, res) => {
+const start = async () => {
   try {
-    const { text } = req.body;
-    if (text.match(urlRegexp)) {
-      res.send("Visiting url");
-    } else {
-      res.send("Normal message");
-    }
-  } catch (e) {
-    console.error(e);
+    await fastify.listen(3000);
+    fastify.log.info(`Server listening on ${fastify.server.address().port}`);
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
   }
-});
-
-app.listen(SERVER_PORT, () =>
-  console.log(`Server ready at http://localhost:${SERVER_PORT}`)
-);
+};
+start();
