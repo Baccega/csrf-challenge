@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { isUserAuthenticated } from "./utils/auth";
 
 import Login from "./routes/Login";
@@ -21,13 +21,18 @@ export default function App() {
 
   return (
     <Switch>
+      <Route path="/" exact>
+        <Redirect to="/login" />
+      </Route>
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
       <Route path="/signup" component={Logout} />
       <ProtectedRoute authenticated={authenticated}>
         <Route path="/game" component={Game} />
       </ProtectedRoute>
-      <Route render={() => <Redirect to="/login" />} />
+      <Route>
+        <Redirect to="/login" />
+      </Route>
     </Switch>
   );
 }

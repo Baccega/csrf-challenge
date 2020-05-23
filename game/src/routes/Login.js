@@ -10,9 +10,6 @@ import Alert from "@material-ui/lab/Alert";
 import { login, isUserAuthenticated } from "../utils/auth";
 import { CircularProgress } from "@material-ui/core";
 
-const TITLE_SIZE = 50;
-const FOOTER_SIZE = 70;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
@@ -52,6 +49,7 @@ export default function Login() {
   });
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [authenticated, setAuthenticate] = React.useState(false);
 
   const handleLoginFormChange = (e) =>
     setLoginFormData({
@@ -66,15 +64,17 @@ export default function Login() {
     const result = await login(loginFormData);
     setLoading(false);
     if (result && isUserAuthenticated()) {
-      handleAuthenticationComplete();
+      setAuthenticate(true);
     } else {
       setError(true);
     }
   };
 
-  const handleAuthenticationComplete = () => {
-    history.push("/game/dashboard");
-  };
+  React.useLayoutEffect(() => {
+    if (isUserAuthenticated()) {
+      history.push("/game/dashboard");
+    }
+  }, [history, authenticated]);
 
   return (
     <div className={classes.root}>

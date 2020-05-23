@@ -12,26 +12,18 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateRows: `${TITLE_SIZE}px auto ${FOOTER_SIZE}px`,
     "& > header": {
-      padding: theme.spacing(1),
-      backgroundColor: theme.palette.background.paper,
-      display: "flex",
-      alignItems: "center",
+      padding: theme.spacing(3),
+      backgroundColor: theme.palette.background.default,
       borderBottom: `1px solid ${theme.palette.divider}`,
-      "& > *": {
-        marginRight: theme.spacing(1),
-      },
     },
     "& > main": {
-      padding: `${theme.spacing(2)}px ${theme.spacing(1)}px 0px ${theme.spacing(
-        1
-      )}px`,
-      transform: "scaleY(-1)",
-      "& > *": {
-        transform: "scaleY(-1)",
-      },
-      display: "flex",
-      flexDirection: "column",
-      overflow: "scroll",
+      // transform: "scaleY(-1)",
+      // "& > *": {
+      //   transform: "scaleY(-1)",
+      // },
+      // display: "flex",
+      // flexDirection: "column",
+      // overflow: "scroll",
     },
   },
 }));
