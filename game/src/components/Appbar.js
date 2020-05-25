@@ -3,7 +3,7 @@ import { makeStyles, Typography, Button } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSignOutAlt } from "react-icons/fa";
-import { GiBackpack, GiCrestedHelmet } from "react-icons/gi";
+import { GiBackpack, GiCrestedHelmet, GiThreeFriends } from "react-icons/gi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +55,15 @@ export default function Appbar() {
             to="/game/profile"
           >
             Profile
+          </Button>
+          <Button
+            color={getMyColor("/game/friends")}
+            component={Link}
+            classes={{ label: classes.linkButtons }}
+            endIcon={<GiThreeFriends />}
+            to="/game/friends"
+          >
+            Friends
           </Button>
 
           <Button

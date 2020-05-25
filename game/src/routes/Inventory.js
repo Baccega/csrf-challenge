@@ -6,31 +6,34 @@ import {
   ListItem,
   makeStyles,
   ListItemText,
+  Typography,
 } from "@material-ui/core";
+import Item from "../components/Item";
 
 const useStyles = makeStyles((theme) => ({
   itemListContainer: {
     overflowY: "scroll",
     height: "100%",
+    "& > header": {
+      padding: theme.spacing(2),
+      paddingBottom: theme.spacing(1),
+    },
   },
   itemShowcase: {},
 }));
 
-const items = [
+const inventory = [
   {
     id: "0001",
-    name: "Small sword",
-    description: "A simple small sword",
+    quantity: 1,
   },
   {
     id: "0002",
-    name: "Small staff",
-    description: "A simple small staff",
+    quantity: 1,
   },
   {
     id: "0003",
-    name: "Small shield",
-    description: "A simple small shield",
+    quantity: 4,
   },
 ];
 
@@ -38,13 +41,13 @@ export default function Inventory() {
   const classes = useStyles();
   const [selected, setSelected] = React.useState(null);
 
-  const handleSelection = (item) => setSelected(item);
+  const handleSelection = (invItem) => setSelected(invItem);
 
   return (
     <InventoryLayout
       itemList={
         <ItemList
-          items={items}
+          inventory={inventory}
           selected={selected}
           onSelection={handleSelection}
         />
@@ -54,20 +57,21 @@ export default function Inventory() {
   );
 }
 
-function ItemList({ items, selected, onSelection }) {
+function ItemList({ inventory, selected, onSelection }) {
   const classes = useStyles();
   return (
     <Paper className={classes.itemListContainer}>
+      <header>
+        <Typography variant="h5">Inventory</Typography>
+      </header>
       <List>
-        {items.map((item) => (
-          <ListItem
-            key={item.id}
-            onClick={(e) => onSelection(item)}
-            selected={selected?.id === item.id}
+        {inventory.map((invItem) => (
+          <Item
+            invItem={invItem}
+            onClick={(e) => onSelection(invItem)}
+            selected={selected?.id === invItem.id}
             button
-          >
-            <ListItemText primary={item.name} />
-          </ListItem>
+          />
         ))}
       </List>
     </Paper>
