@@ -26,7 +26,7 @@ export default function App() {
       setMessage("");
 
       try {
-        const res = await fetch("http://localhost:3000/chat/gary", {
+        const res = await fetch("/api/chat/gary", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
