@@ -1,0 +1,46 @@
+{
+  "name": "csrf-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Sandro Baccega <sandrobac@hotmail.it>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baccega/csrf-challenge.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@yarnpkg/pnpify": "^2.0.0-rc.20",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.3",
+    "lerna": "^3.20.2",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "start": "concurrently --kill-others \"npm run start-game\" \"npm run start-backend\"",
+    "start-game": "lerna run start --scope @csrf-challenge/game",
+    "start-backend": "lerna run start --scope @csrf-challenge/backend",
+    "dev": "concurrently --kill-others  \"npm run dev-common\" \"npm run dev-game\" \"npm run dev-backend\"",
+    "dev-game": "lerna run dev --scope @csrf-challenge/game",
+    "dev-backend": "lerna run dev --scope @csrf-challenge/backend",
+    "dev-common": "lerna run dev --scope @csrf-challenge/common",
+    "build": "yarn build-common; concurrently \"yarn build-backend\" \"yarn build-game\"",
+    "build-backend": "lerna run build --scope @csrf-challenge/backend",
+    "build-common": "lerna run build --scope @csrf-challenge/common",
+    "build-game": "lerna run build --scope @csrf-challenge/game",
+    "docker-build": "docker build -t csrf-challenge .",
+    "docker-run": "npm run docker-build && TODO",
+    "format": "lerna run format",
+    "lint": "lerna run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run --concurrency 1 --stream precommit"
+    }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
