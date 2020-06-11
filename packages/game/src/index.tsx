@@ -1,18 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import App from "./App";
 
-// import Dashboard from "./pages/Dashboard";
-// import Blockchain from "./pages/Blockchain";
-// import Flights from "./pages/Flights";
-// import Peers from "./pages/Peers";
-// import CarrierInfo from "./pages/CarrierInfo";
-// import FindFlight from "./pages/FindFlight";
-// import RouteFinder from "./pages/RouteFinder";
+import { BrowserRouter } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
+import { ThemeProvider, CssBaseline, createMuiTheme } from "@material-ui/core";
+import red from "@material-ui/core/colors/red";
+import amber from "@material-ui/core/colors/amber";
 
-function App() {
-  return <p>TEst</p>;
-}
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: { main: red.A200 },
+    secondary: { main: amber.A700 },
+  },
+});
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <CookiesProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </CssBaseline>
+      </ThemeProvider>
+    </CookiesProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
