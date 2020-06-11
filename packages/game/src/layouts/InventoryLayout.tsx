@@ -25,6 +25,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+type InventoryLayoutProps = {
+  itemList: JSX.Element;
+  itemShowcase: JSX.Element;
+};
+
 export default function InventoryLayout({ itemList, itemShowcase }) {
   const classes = useStyles();
 

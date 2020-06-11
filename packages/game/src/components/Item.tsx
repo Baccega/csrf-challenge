@@ -8,7 +8,8 @@ import {
   ListItemSecondaryAction,
   Typography,
 } from "@material-ui/core";
-import { itemsList } from "../assets/itemList";
+import { InventoryItem } from "@csrf-challenge/common/src/Item";
+import { ItemsList } from "../assets/ItemsList";
 
 const useStyles = makeStyles(theme => ({
   itemListContainer: {
@@ -18,9 +19,14 @@ const useStyles = makeStyles(theme => ({
   itemShowcase: {},
 }));
 
+type GameLayoutProps = {
+  invItem: InventoryItem;
+};
+
 export default function Item({ invItem, ...rest }) {
   const classes = useStyles();
-  const item = itemsList.find(i => i.id === invItem.id);
+
+  const item = ItemsList.find(i => i.id === invItem.id);
 
   if (!Boolean(item)) {
     return null;

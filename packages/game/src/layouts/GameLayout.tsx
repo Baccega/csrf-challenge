@@ -28,7 +28,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function GameLayout({ appBar, main }) {
+type GameLayoutProps = {
+  appBar: JSX.Element;
+  main: JSX.Element;
+};
+
+export default function GameLayout({ appBar, main }: GameLayoutProps) {
   const classes = useStyles();
 
   return (

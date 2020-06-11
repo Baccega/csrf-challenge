@@ -1582,7 +1582,6 @@ __metadata:
     eslint-plugin-prettier: ^3.1.2
     lint-staged: ^10.0.8
     moment: ^2.26.0
-    mui-datatables: ^2.14.0
     prettier: ^1.19.1
     react: ^16.13.1
     react-cookie: ^4.0.3
@@ -5809,13 +5808,6 @@ __metadata:
     isobject: ^3.0.0
     static-extend: ^0.1.1
   checksum: 2/6411679ad4d2bde81b62ad721d4771d108d5d8ef32805d10ebfa6f1d6bdcfd5cb6dfea5232b85221f079e42691c36cf2db05a5e76b87ba8f6deb37a2c23a4a41
-  languageName: node
-  linkType: hard
-
-"classnames@npm:^2.2.5":
-  version: 2.2.6
-  resolution: "classnames@npm:2.2.6"
-  checksum: 2/490eaeca5931846737ffd33e472a701d268d5b8bc5717dd4cf108a127b06e86e05350e06799abbbe763a0e4c945b4217f6700b7ae00ddc703505682c370e5cf2
   languageName: node
   linkType: hard
 
@@ -12258,24 +12250,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.assignwith@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "lodash.assignwith@npm:4.2.0"
-  checksum: 2/d35a6e3762f9eab3838b624d1067e21587ab2680074ec84783f9aacb4c830953ae0fe43ce241ee376177c10f9461391a136d43bf3a79d1fc563229f7f7dc5919
-  languageName: node
-  linkType: hard
-
 "lodash.clonedeep@npm:^4.5.0":
   version: 4.5.0
   resolution: "lodash.clonedeep@npm:4.5.0"
   checksum: 2/41e2fe4c57c56a66a4775a6ddeebe9272f0ce4d257d97b3cb8724a9b01eeec9b09ce7e8603d6926baf5f48c287d988f0de4bf5aa244ea86b1f22c1e6f203cc27
-  languageName: node
-  linkType: hard
-
-"lodash.find@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "lodash.find@npm:4.6.0"
-  checksum: 2/a6188ffe8d57b628938a28afe597faea18e09d29ab3e4b2552b1099124453e5bdfbe5c9d2d8e79ee8dc19e8552d81f24e16f84ad40990f05202fbc67f984a680
   languageName: node
   linkType: hard
 
@@ -12286,13 +12264,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.isequal@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "lodash.isequal@npm:4.5.0"
-  checksum: 2/5b47e094641c18a915497343894c66f7da6aebb9aaa2a3fcc5643455aaf29d19df60ebbed664c8374fb959c8b4ce96810ee6becd8a71ac58c6c2ca8d29762947
-  languageName: node
-  linkType: hard
-
 "lodash.ismatch@npm:^4.4.0":
   version: 4.4.0
   resolution: "lodash.ismatch@npm:4.4.0"
@@ -12300,24 +12271,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.isundefined@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "lodash.isundefined@npm:3.0.1"
-  checksum: 2/acbd40dbc00fbee5781e94a548a1aedadf9e8188934cfe6007c06c068460e679848b50a639045dd781e04d45340102d822dc250d09809d4e2612f6d42dd040b5
-  languageName: node
-  linkType: hard
-
 "lodash.memoize@npm:4.x, lodash.memoize@npm:^4.1.2":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
   checksum: 2/080c1095b7795b293a06078737550dc0c8138192cadbafb4e4b1303357d367ac589a1a570fad8de154175b008ca7b2b48d6a7f1755a143e13b764e20a7104080
-  languageName: node
-  linkType: hard
-
-"lodash.merge@npm:^4.6.0":
-  version: 4.6.2
-  resolution: "lodash.merge@npm:4.6.2"
-  checksum: 2/4e2bb42a87a148991458d7c384bc197e96f7115e9536fc8e2c86ae9e99ce1c1f693ff15eb85761952535f48d72253aed8e673d9f32dde3e671cd91e3fde220a7
   languageName: node
   linkType: hard
 
@@ -13147,30 +13104,6 @@ __metadata:
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
   checksum: 2/9b65fb709bc30c0c07289dcbdb61ca032acbb9ea5698b55fa62e2cebb04c5953f1876a1f3f7f4bc2e91d4bf4d86003f3e207c3bc6ee2f716f99827e62389cd0e
-  languageName: node
-  linkType: hard
-
-"mui-datatables@npm:^2.14.0":
-  version: 2.15.0
-  resolution: "mui-datatables@npm:2.15.0"
-  dependencies:
-    classnames: ^2.2.5
-    lodash.assignwith: ^4.2.0
-    lodash.clonedeep: ^4.5.0
-    lodash.find: ^4.6.0
-    lodash.get: ^4.4.2
-    lodash.isequal: ^4.5.0
-    lodash.isundefined: ^3.0.1
-    lodash.memoize: ^4.1.2
-    lodash.merge: ^4.6.0
-    prop-types: ^15.6.0
-    react-to-print: ^2.0.0-alpha.7
-  peerDependencies:
-    "@material-ui/core": ^3.2.0
-    "@material-ui/icons": ^3.0.1
-    react: ^16.0.0
-    react-dom: ^16.0.0
-  checksum: 2/882fc21181638a9c31830fc41a097b66d3fc5fec5b3719a7b0a78a615ac6ecade86fc924daa470a38a5b95f7fe9dc498f6b903ee9a4973d9464525f0e101e697
   languageName: node
   linkType: hard
 
@@ -15659,7 +15592,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -16150,18 +16083,6 @@ __metadata:
   bin:
     react-scripts: ./bin/react-scripts.js
   checksum: 2/417fc7cfb3c7b632f8286e02febf2301ae4a4bc25299a9ef8662c777dcaef8de9d7f2320cd7491bf796674fa1de7d86fdb9e9a2852266167e19085dd78b15f79
-  languageName: node
-  linkType: hard
-
-"react-to-print@npm:^2.0.0-alpha.7":
-  version: 2.9.0
-  resolution: "react-to-print@npm:2.9.0"
-  dependencies:
-    prop-types: ^15.7.2
-  peerDependencies:
-    react: ^15.0.0 || ^16.0.0
-    react-dom: ^15.0.0 || ^16.0.0
-  checksum: 2/808caf3e21b556e693bde2eecc624258e6ddab30b4cf17cadac1f9e934ed1cf76502e1b131ada48466f2e93c4d60e4e33bc11cb5c97dd5488a1d4db9ea928db2
   languageName: node
   linkType: hard
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { GiBroadsword, GiCheckedShield, GiWizardStaff } from "react-icons/gi";
+import Item from "@csrf-challenge/common/src/Item";
 
-export const itemsList = [
+export const ItemsList: Item[] = [
   {
     id: "0001",
     name: "Small sword",
     description: "A simple small sword",
-    icon: <GiBroadsword></GiBroadsword>,
+    icon: <GiBroadsword />,
   },
   {
     id: "0002",
