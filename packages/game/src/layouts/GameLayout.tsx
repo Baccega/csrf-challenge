@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 const TITLE_SIZE = 50;
-const FOOTER_SIZE = 70;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -10,13 +9,14 @@ const useStyles = makeStyles(theme => ({
     height: "100vh",
     overflow: "hidden",
     display: "grid",
-    gridTemplateRows: `${TITLE_SIZE}px auto ${FOOTER_SIZE}px`,
+    gridTemplateRows: `${TITLE_SIZE}px auto`,
     "& > header": {
       padding: theme.spacing(3),
       backgroundColor: theme.palette.background.default,
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     "& > main": {
+      height: "100%",
       // transform: "scaleY(-1)",
       // "& > *": {
       //   transform: "scaleY(-1)",

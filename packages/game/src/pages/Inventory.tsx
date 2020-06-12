@@ -1,5 +1,5 @@
 import React from "react";
-import InventoryLayout from "../layouts/InventoryLayout";
+import MasterListLayout from "../layouts/MasterListLayout";
 import {
   Paper,
   List,
@@ -53,15 +53,15 @@ export default function Inventory() {
   const handleSelection = invItem => setSelected(invItem);
 
   return (
-    <InventoryLayout
-      itemList={
+    <MasterListLayout
+      list={
         <ItemList
           inventory={inventory}
           selected={selected}
           onSelection={handleSelection}
         />
       }
-      itemShowcase={<ItemShowcase selected={selected} />}
+      master={<ItemShowcase selected={selected} />}
     />
   );
 }
@@ -76,6 +76,7 @@ function ItemList({ inventory, selected, onSelection }) {
       <List>
         {inventory.map(invItem => (
           <Item
+            key={invItem.id}
             invItem={invItem}
             onClick={e => onSelection(invItem)}
             selected={selected?.id === invItem.id}
