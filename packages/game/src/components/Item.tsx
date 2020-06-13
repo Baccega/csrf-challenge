@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   itemShowcase: {},
 }));
 
-type GameLayoutProps = {
+type ItemProps = {
   invItem: InventoryItem;
 };
 

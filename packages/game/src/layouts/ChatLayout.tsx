@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-const TITLE_SIZE = 50;
+const TITLE_SIZE = 64;
 const FOOTER_SIZE = 70;
 
 const useStyles = makeStyles(theme => ({
@@ -11,8 +11,11 @@ const useStyles = makeStyles(theme => ({
     overflow: "hidden",
     display: "grid",
     gridTemplateRows: `${TITLE_SIZE}px auto ${FOOTER_SIZE}px`,
+    borderRadius: 8,
     "& > header": {
-      padding: theme.spacing(1),
+      padding: theme.spacing(3),
+      paddingTop: 2,
+      paddingBottom: 0,
       backgroundColor: theme.palette.background.paper,
       display: "flex",
       alignItems: "center",

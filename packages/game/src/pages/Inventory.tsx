@@ -69,7 +69,7 @@ export default function Inventory() {
 function ItemList({ inventory, selected, onSelection }) {
   const classes = useStyles();
   return (
-    <Paper className={classes.itemListContainer}>
+    <div className={classes.itemListContainer}>
       <header>
         <Typography variant="h5">Inventory</Typography>
       </header>
@@ -84,7 +84,7 @@ function ItemList({ inventory, selected, onSelection }) {
           />
         ))}
       </List>
-    </Paper>
+    </div>
   );
 }
 
@@ -93,19 +93,19 @@ function ItemShowcase({ selected }) {
 
   if (!Boolean(selected)) {
     return (
-      <Paper className={classes.emptyContainer}>
+      <div className={classes.emptyContainer}>
         <Typography variant="h4">Select an item</Typography>
-      </Paper>
+      </div>
     );
   }
 
   return (
-    <Paper className={classes.itemShowcase}>
+    <div className={classes.itemShowcase}>
       <header>
         <Typography align="center" variant="h4">
           {selected.name}👋🏻
         </Typography>
       </header>
-    </Paper>
+    </div>
   );
 }
