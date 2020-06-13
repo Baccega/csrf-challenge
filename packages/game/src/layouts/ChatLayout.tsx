@@ -7,15 +7,14 @@ const FOOTER_SIZE = 70;
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    height: "100%",
+    // It aint ugly if it works
+    height: `calc(100vh - 50px - ${16 * 2}px)`,
     overflow: "hidden",
     display: "grid",
     gridTemplateRows: `${TITLE_SIZE}px auto ${FOOTER_SIZE}px`,
     borderRadius: 8,
     "& > header": {
-      padding: theme.spacing(3),
-      paddingTop: 2,
-      paddingBottom: 0,
+      padding: theme.spacing(2),
       backgroundColor: theme.palette.background.paper,
       display: "flex",
       alignItems: "center",
@@ -35,6 +34,7 @@ const useStyles = makeStyles(theme => ({
       display: "flex",
       flexDirection: "column",
       overflow: "scroll",
+      height: "100%",
     },
     "& > footer": {
       padding: theme.spacing(1),

@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 type FriendProps = {
   friend: Friend;
   selected: boolean;
-  onSelect: (name: string) => void;
+  onSelect: (friend: Friend) => void;
 };
 
 export default function FriendListItem({
@@ -38,7 +38,7 @@ export default function FriendListItem({
   const classes = useStyles();
 
   const handleClick = () => {
-    onSelect(friend.name);
+    onSelect(friend);
   };
 
   return (
