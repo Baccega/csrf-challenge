@@ -20,20 +20,20 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run start-game\" \"npm run start-backend\"",
-    "start-game": "lerna run start --scope @csrf-challenge/game",
-    "start-backend": "lerna run start --scope @csrf-challenge/backend",
+    "start-game": "lerna run start --stream --scope @csrf-challenge/game",
+    "start-backend": "lerna run start --stream --scope @csrf-challenge/backend",
     "dev": "concurrently --kill-others  \"npm run dev-common\" \"npm run dev-game\" \"npm run dev-backend\"",
     "dev-game": "lerna run dev --scope @csrf-challenge/game",
-    "dev-backend": "lerna run dev --scope @csrf-challenge/backend",
-    "dev-common": "lerna run dev --scope @csrf-challenge/common",
+    "dev-backend": "lerna run dev --stream --scope @csrf-challenge/backend",
+    "dev-common": "lerna run dev --stream --scope @csrf-challenge/common",
     "build": "yarn build-common; concurrently \"yarn build-backend\" \"yarn build-game\"",
-    "build-backend": "lerna run build --scope @csrf-challenge/backend",
-    "build-common": "lerna run build --scope @csrf-challenge/common",
-    "build-game": "lerna run build --scope @csrf-challenge/game",
+    "build-backend": "lerna run build --stream --scope @csrf-challenge/backend",
+    "build-common": "lerna run build --stream --scope @csrf-challenge/common",
+    "build-game": "lerna run build --stream --scope @csrf-challenge/game",
     "docker-build": "docker build -t csrf-challenge .",
     "docker-run": "npm run docker-build && TODO",
-    "format": "lerna run format",
-    "lint": "lerna run lint"
+    "format": "lerna run format --stream",
+    "lint": "lerna run lint --stream"
   },
   "husky": {
     "hooks": {
