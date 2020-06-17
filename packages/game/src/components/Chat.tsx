@@ -9,6 +9,7 @@ import BigBullet from "@material-ui/icons/FiberManualRecord";
 
 import ChatLayout from "../layouts/ChatLayout";
 import ChatInput from "../components/ChatInput";
+import { sendMessageApi } from "../api/endpoints";
 
 const useStyles = makeStyles(theme => ({
   listRoot: {
@@ -52,10 +53,21 @@ export default function Chat() {
     const text = event.target.value;
     setMessage(cur => ({ ...cur, text }));
   };
-  const handleMessageSend = e => {
+
+  const handleMessageSend = async e => {
     e.preventDefault();
+    setLoading(true);
     setMessages(cur => [message, ...cur]);
     setMessage(EMPTY_MESSAGE);
+    try {
+      const response = await sendMessageApi(message);
+      if (response.data) {
+        setMessages(cur => [response.data, ...cur]);
+        setLoading(false);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

@@ -1,12 +1,19 @@
+import { Message } from "src";
+
 export type ResponseStatus<T = null, E extends string = string> =
-  | { status: "error"; error: E }
-  | { status: "ok"; data: T };
+  | { status: "ok"; data: T; error: null }
+  | { status: "error"; data: null; error: E };
 
 export default interface Endpoints {
   "GET /": {
     params: {};
     res: ResponseStatus<string>;
     req: null;
+  };
+  "POST /chat": {
+    params: {};
+    res: ResponseStatus<Message>;
+    req: Message;
   };
   // "GET /blocks/from/:from/to/:to": {
   //   params: { from: string; to: string };

@@ -49,6 +49,7 @@ export default function Friends() {
           <List>
             {FriendsList.map(friend => (
               <FriendListItem
+                key={friend.name}
                 friend={friend}
                 selected={friend.name === selected?.name}
                 onSelect={handleSelect}
