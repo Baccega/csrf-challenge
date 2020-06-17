@@ -1,4 +1,4 @@
-import { Message } from "src";
+import { Message, Login } from "./index";
 
 export type ResponseStatus<T = null, E extends string = string> =
   | { status: "ok"; data: T; error: null }
@@ -6,6 +6,16 @@ export type ResponseStatus<T = null, E extends string = string> =
 
 export default interface Endpoints {
   "GET /": {
+    params: {};
+    res: ResponseStatus<string>;
+    req: null;
+  };
+  "POST /login": {
+    params: {};
+    res: ResponseStatus<string>;
+    req: Login;
+  };
+  "POST /logout": {
     params: {};
     res: ResponseStatus<string>;
     req: null;

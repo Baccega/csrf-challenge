@@ -7,22 +7,22 @@ import { ParamsType, ResType, ReqType } from "@csrf-challenge/common/src/utils";
 export default function safeEndpoint<K extends keyof Endpoints>(
   app: ReturnType<typeof express>,
   endpoint: K,
-  handler: RequestHandler<ParamsType<K>, ResType<K>, ReqType<K>>
+  ...handlers: RequestHandler<ParamsType<K>, ResType<K>, ReqType<K>>[]
 ) {
   if (endpoint.startsWith("GET ")) {
     app.get<ParamsType<K>, ResType<K>, ReqType<K>>(
       endpoint.substr("GET ".length),
-      handler
+      ...handlers
     );
   } else if (endpoint.startsWith("POST ")) {
     app.post<ParamsType<K>, ResType<K>, ReqType<K>>(
       endpoint.substr("POST ".length),
-      handler
+      ...handlers
     );
   } else if (endpoint.startsWith("PUT ")) {
     app.put<ParamsType<K>, ResType<K>, ReqType<K>>(
       endpoint.substr("PUT ".length),
-      handler
+      ...handlers
     );
   } else {
     throw new Error("Not implemented");

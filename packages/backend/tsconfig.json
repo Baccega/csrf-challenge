@@ -12,7 +12,8 @@
     "paths": {
       "*": ["node_modules/*", "src/types/*"],
       "@csrf-challenge/common": ["../common/src"]
-    }
+    },
+    "typeRoots": ["./types"]
   },
   "include": ["src/**/*"]
 }
