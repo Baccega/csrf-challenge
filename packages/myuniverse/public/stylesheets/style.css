@@ -1,0 +1,14 @@
+.container {
+  margin-top: 16px;
+}
+
+#editor {
+  height: 500px;
+  border: 1px solid black;
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
