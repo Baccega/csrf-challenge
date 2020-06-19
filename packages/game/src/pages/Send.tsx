@@ -6,8 +6,8 @@ import { FriendsList, Friend } from "../assets/friendsList";
 
 import ThreeListLayout from "../layouts/ThreeListLayout";
 import FriendListItem from "../components/FriendListItem";
-import { Item } from "@csrf-challenge/common/src";
 import { ItemList } from "./Inventory";
+import { sendItemApi } from "../api/endpoints";
 
 const useStyles = makeStyles(theme => ({
   listRoot: {
@@ -28,7 +28,7 @@ export default function Send({ inventory }) {
   const classes = useStyles();
 
   const [selectedFriend, setSelectedFriend] = React.useState<Friend>(null);
-  const [selectedItem, setSelectedItem] = React.useState<Item>(null);
+  const [selectedItem, setSelectedItem] = React.useState(null);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSelectFriend = friend => {
@@ -41,8 +41,8 @@ export default function Send({ inventory }) {
       setSelectedItem({ ...item, index });
     }
   };
-  const handleSend = () => {
-    // API
+  const handleSend = async () => {
+    await sendItemApi(selectedFriend.name, selectedItem.index);
     setLoading(true);
   };
 
@@ -60,13 +60,13 @@ export default function Send({ inventory }) {
 
   const sendButton = (
     <div className={classes.emptyContainer}>
-      <Button size="large" variant="outlined" onClick={handleSend}>
-        {loading ? (
-          <CircularProgress />
-        ) : (
-          `Send item to ${selectedFriend?.name}`
-        )}
-      </Button>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Button size="large" variant="outlined" onClick={handleSend}>
+          Send item to {selectedFriend?.name}
+        </Button>
+      )}
     </div>
   );
 
