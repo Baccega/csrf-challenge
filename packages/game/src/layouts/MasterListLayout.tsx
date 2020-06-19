@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     display: "grid",
     padding: theme.spacing(2),
-    gridTemplateColumns: "1fr 3fr",
+    gridTemplateColumns: "1fr 2fr",
     gridTemplateAreas: "'list master'",
     gridGap: theme.spacing(2),
     [theme.breakpoints.down("sm")]: {
@@ -33,7 +33,10 @@ type MasterListLayoutProps = {
   master: JSX.Element;
 };
 
-export default function MasterListLayout({ list, master }) {
+export default function MasterListLayout({
+  list,
+  master,
+}: MasterListLayoutProps) {
   const classes = useStyles();
 
   return (

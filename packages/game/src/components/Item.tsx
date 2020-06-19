@@ -8,8 +8,7 @@ import {
   ListItemSecondaryAction,
   Typography,
 } from "@material-ui/core";
-import { InventoryItem } from "@csrf-challenge/common/src/Item";
-import { ItemsList } from "../assets/ItemsList";
+import getItemIcon from "../assets/itemsIcons";
 
 const useStyles = makeStyles(theme => ({
   itemListContainer: {
@@ -19,28 +18,19 @@ const useStyles = makeStyles(theme => ({
   itemShowcase: {},
 }));
 
-type ItemProps = {
-  invItem: InventoryItem;
-};
-
-export default function Item({ invItem, ...rest }) {
+export default function Item({ item, ...rest }) {
   const classes = useStyles();
-
-  const item = ItemsList.find(i => i.id === invItem.id);
 
   if (!Boolean(item)) {
     return null;
   }
 
   return (
-    <ListItem key={invItem.id} {...rest}>
+    <ListItem key={item.id} {...rest}>
       <ListItemAvatar>
-        <Avatar>{item.icon}</Avatar>
+        <Avatar>{getItemIcon(item.id)}</Avatar>
       </ListItemAvatar>
       <ListItemText primary={item.name} />
-      <ListItemSecondaryAction>
-        <Typography variant="body1">x{invItem.quantity}</Typography>
-      </ListItemSecondaryAction>
     </ListItem>
   );
 }

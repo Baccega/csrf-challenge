@@ -13,6 +13,10 @@ export async function logoutApi() {
   return rawApiCall("POST /logout", { params: {}, body: {} });
 }
 
+// export async function inventoryApi() {
+//   return apiCall("GET /inventory", { params: {}, body: {} });
+// }
+
 // try {
 //   const response = await fetch("/api/login", {
 //       method: "POST",

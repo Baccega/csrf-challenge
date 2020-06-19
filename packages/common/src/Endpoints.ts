@@ -1,5 +1,6 @@
 import { Message, Login } from "./index";
 import { LoginResponse } from "./Login";
+import { Item } from "./Item";
 
 export type ResponseStatus<T = null, E extends string = string> =
   | { status: "ok"; data: T; error: null }
@@ -20,6 +21,11 @@ export default interface Endpoints {
     params: {};
     res: ResponseStatus<Message>;
     req: Message;
+  };
+  "GET /inventory": {
+    params: {};
+    res: ResponseStatus<Item[]>;
+    req: any;
   };
   // "GET /blocks/from/:from/to/:to": {
   //   params: { from: string; to: string };

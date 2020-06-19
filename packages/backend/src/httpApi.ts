@@ -79,5 +79,15 @@ export default function createHttpApi() {
     }
   });
 
+  ep(app, "GET /inventory", authorized, async (req: any, res) => {
+    try {
+      const inventory = req.user.inventory;
+
+      res.status(200).send({ status: "ok", data: inventory, error: null });
+    } catch (e) {
+      res.status(500).send({ status: "error", data: null, error: "Error" });
+    }
+  });
+
   return app;
 }

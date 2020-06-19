@@ -1,10 +1,11 @@
-export default interface Item {
-  id: String;
-  name: String;
-  description: String;
-  icon: JSX.Element;
+export interface Item {
+  id: string;
+  name: string;
+  description: string;
+  icon?: JSX.Element;
 }
 
-export interface InventoryItem extends Item {
-  quantity: Number;
-}
+// No time for this
+// export interface InventoryItem extends Item {
+//   quantity: number;
+// }

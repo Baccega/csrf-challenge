@@ -22,5 +22,5 @@ export function useRemoteData<K extends keyof Endpoints>(
     loadData();
   }, [endpoint, params]);
 
-  return data;
+  return data?.data;
 }

@@ -12,8 +12,6 @@ import { green, red } from "@material-ui/core/colors";
 import { FaUser } from "react-icons/fa";
 import BigBullet from "@material-ui/icons/FiberManualRecord";
 
-import { InventoryItem } from "@csrf-challenge/common/src/Item";
-import { ItemsList } from "../assets/ItemsList";
 import { Friend } from "../assets/friendsList";
 
 const useStyles = makeStyles(theme => ({

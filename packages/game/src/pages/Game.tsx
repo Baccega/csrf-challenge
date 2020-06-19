@@ -3,7 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
 import Inventory from "./Inventory";
-import Profile from "./Profile";
+import Send from "./Send";
 import Friends from "./Friends";
 
 import GameLayout from "../layouts/GameLayout";
@@ -24,8 +24,8 @@ export default function Game() {
           <Route path="/game/inventory">
             <Inventory />
           </Route>
-          <Route path="/game/profile">
-            <Profile />
+          <Route path="/game/send-item">
+            <Send />
           </Route>
           <Route path="/game/friends">
             <Friends />

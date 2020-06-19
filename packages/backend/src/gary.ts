@@ -1,4 +1,5 @@
 import { Message, User } from "@csrf-challenge/common/src";
+import { Item } from "@csrf-challenge/common/src/Item";
 
 const fallbackMessagges: string[] = [
   "Yes, I think so",
@@ -48,6 +49,54 @@ export function createGary(): User {
   return {
     username: "gary",
     password: "gary", //TODO
-    inventory: "inv",
+    inventory: DEFAULT_INVENTORY,
   };
 }
+
+const DEFAULT_INVENTORY: Item[] = [
+  {
+    id: "0001",
+    name: "Small sword",
+    description: "A simple small sword",
+  },
+  {
+    id: "0002",
+    name: "Small staff",
+    description: "A simple small staff",
+  },
+  {
+    id: "0003",
+    name: "Small shield",
+    description: "A simple small shield",
+  },
+  {
+    id: "0001",
+    name: "Small sword",
+    description: "A simple small sword",
+  },
+  {
+    id: "0002",
+    name: "Small staff",
+    description: "A simple small staff",
+  },
+  {
+    id: "0003",
+    name: "Small shield",
+    description: "A simple small shield",
+  },
+  {
+    id: "0001",
+    name: "Small sword",
+    description: "A simple small sword",
+  },
+  {
+    id: "0002",
+    name: "Small staff",
+    description: "A simple small staff",
+  },
+  {
+    id: "0003",
+    name: "Small shield",
+    description: "A simple small shield",
+  },
+];

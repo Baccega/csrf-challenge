@@ -1,4 +1,4 @@
 export default interface Message {
-  text: String;
-  sender: String;
+  text: string;
+  sender: string;
 }

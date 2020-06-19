@@ -1,9 +1,11 @@
+import { Item } from "./Item";
+
 export type User = {
-  username: String;
-  password: String;
-  inventory: String;
+  username: string;
+  password: string;
+  inventory: Item[];
 };
 export type AuthenticatedUser = {
-  cookie: String;
+  cookie: string;
   user: User;
 };

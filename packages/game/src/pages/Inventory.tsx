@@ -4,11 +4,19 @@ import {
   Paper,
   List,
   ListItem,
+  Avatar,
   makeStyles,
   ListItemText,
   Typography,
+  LinearProgress,
 } from "@material-ui/core";
 import Item from "../components/Item";
+import { INVENTORY_SIZE } from "@csrf-challenge/common/src/costants";
+import { useRemoteData } from "../api/hooks";
+import getItemIcon from "../assets/itemsIcons";
+import { IconContext } from "react-icons/lib";
+
+const AVATAR_SIZE = 200;
 
 const useStyles = makeStyles(theme => ({
   itemListContainer: {
@@ -20,8 +28,30 @@ const useStyles = makeStyles(theme => ({
     },
   },
   itemShowcase: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(4),
     height: "100%",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "1fr 1fr",
+    gridTemplateAreas: `
+      "icon header" 
+      "description description"
+    `,
+    "& > *": {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    },
+    "& > header": {
+      gridArea: "header",
+      justifyContent: "space-evenly",
+    },
+    "& > aside": {
+      gridArea: "icon",
+    },
+    "& > article": {
+      gridArea: "description",
+    },
   },
   emptyContainer: {
     height: "100%",
@@ -29,26 +59,16 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  iconAvatar: {
+    width: AVATAR_SIZE,
+    height: AVATAR_SIZE,
+  },
 }));
-
-const inventory = [
-  {
-    id: "0001",
-    quantity: 1,
-  },
-  {
-    id: "0002",
-    quantity: 1,
-  },
-  {
-    id: "0003",
-    quantity: 4,
-  },
-];
 
 export default function Inventory() {
   const classes = useStyles();
   const [selected, setSelected] = React.useState(null);
+  const inventory = useRemoteData("GET /inventory", { params: {}, body: {} });
 
   const handleSelection = invItem => setSelected(invItem);
 
@@ -68,18 +88,29 @@ export default function Inventory() {
 
 function ItemList({ inventory, selected, onSelection }) {
   const classes = useStyles();
+
+  if (inventory == null) {
+    return (
+      <div className={classes.itemListContainer}>
+        <LinearProgress />
+      </div>
+    );
+  }
   return (
     <div className={classes.itemListContainer}>
       <header>
         <Typography variant="h5">Inventory</Typography>
+        <Typography variant="caption">
+          {inventory.length}/{INVENTORY_SIZE}
+        </Typography>
       </header>
       <List>
-        {inventory.map(invItem => (
+        {inventory.map((item, index) => (
           <Item
-            key={invItem.id}
-            invItem={invItem}
-            onClick={e => onSelection(invItem)}
-            selected={selected?.id === invItem.id}
+            key={index}
+            item={item}
+            onClick={e => onSelection(item)}
+            selected={selected?.id === item.id}
             button
           />
         ))}
@@ -91,7 +122,7 @@ function ItemList({ inventory, selected, onSelection }) {
 function ItemShowcase({ selected }) {
   const classes = useStyles();
 
-  if (!Boolean(selected)) {
+  if (selected == null) {
     return (
       <div className={classes.emptyContainer}>
         <Typography variant="h4">Select an item</Typography>
@@ -101,11 +132,24 @@ function ItemShowcase({ selected }) {
 
   return (
     <div className={classes.itemShowcase}>
+      <aside>
+        <IconContext.Provider value={{ size: "3em" }}>
+          <Avatar className={classes.iconAvatar}>
+            {getItemIcon(selected.id)}
+          </Avatar>
+        </IconContext.Provider>
+      </aside>
       <header>
-        <Typography align="center" variant="h4">
-          {selected.name}👋🏻
+        <Typography align="right" variant="h5">
+          {selected.name}
         </Typography>
+        {/* <Typography align="right" variant="body1">
+          {selected.description}
+        </Typography> */}
       </header>
+      <article>
+        <Typography variant="body1">{selected.description}</Typography>
+      </article>
     </div>
   );
 }

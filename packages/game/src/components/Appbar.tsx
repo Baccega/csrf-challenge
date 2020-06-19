@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSignOutAlt } from "react-icons/fa";
 import { GiBackpack, GiCrestedHelmet, GiThreeFriends } from "react-icons/gi";
+import { MdSend } from "react-icons/md";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,13 +49,13 @@ export default function Appbar() {
             Inventory
           </Button>
           <Button
-            color={getMyColor("/game/profile")}
+            color={getMyColor("/game/send-item")}
             component={Link}
             classes={{ label: classes.linkButtons }}
-            endIcon={<GiCrestedHelmet />}
-            to="/game/profile"
+            endIcon={<MdSend />}
+            to="/game/send-item"
           >
-            Profile
+            Send Item
           </Button>
           <Button
             color={getMyColor("/game/friends")}

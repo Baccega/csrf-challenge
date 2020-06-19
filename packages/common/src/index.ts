@@ -1,5 +1,5 @@
 import Endpoints from "./Endpoints";
-import Item from "./Item";
+import { Item } from "./Item";
 import Message from "./Message";
 import Login from "./Login";
 import { User } from "./User";

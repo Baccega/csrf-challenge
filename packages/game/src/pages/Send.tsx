@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({}));
 
-export default function Profile() {
+export default function Send() {
   const classes = useStyles();
 
-  return <>Profile</>;
+  return <>Send</>;
 }

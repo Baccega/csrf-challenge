@@ -10,7 +10,8 @@ function findUser(cookies: any): User | null {
 
 export default async function authorized(req: any, res: any, next: any) {
   console.log(JSON.stringify(req.cookies, null, 2));
-  const foundUser = findUser(req.cookies);
+  // const foundUser = findUser(req.cookies); TODO
+  const foundUser = dataRef.users.find(u => u.username === "gary");
   console.log("found: " + JSON.stringify(foundUser, null, 2));
 
   if (Boolean(foundUser)) {
@@ -21,7 +22,7 @@ export default async function authorized(req: any, res: any, next: any) {
   }
 }
 
-export function verifyUser(username: String, password: String): User | null {
+export function verifyUser(username: string, password: string): User | null {
   const found = dataRef.users.find(
     u => u.username === username && u.password === password
   );
@@ -37,7 +38,7 @@ export function logoutUser(user: any): boolean {
   return true;
 }
 
-export function loginUser(user: User | null, cookie: String): boolean {
+export function loginUser(user: User | null, cookie: string): boolean {
   if (user !== null) {
     logoutUser(user);
     dataRef.authenticatedUsers = [

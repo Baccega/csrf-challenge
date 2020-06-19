@@ -1,9 +1,9 @@
 export default interface Login {
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 }
 
 export interface LoginResponse {
-  cookie: String;
+  cookie: string;
   expires: string;
 }
