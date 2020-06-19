@@ -1,24 +1,20 @@
 import { Message, Login } from "./index";
+import { LoginResponse } from "./Login";
 
 export type ResponseStatus<T = null, E extends string = string> =
   | { status: "ok"; data: T; error: null }
   | { status: "error"; data: null; error: E };
 
 export default interface Endpoints {
-  "GET /": {
-    params: {};
-    res: ResponseStatus<string>;
-    req: null;
-  };
   "POST /login": {
     params: {};
-    res: ResponseStatus<string>;
+    res: ResponseStatus<LoginResponse>;
     req: Login;
   };
   "POST /logout": {
     params: {};
-    res: ResponseStatus<string>;
-    req: null;
+    res: ResponseStatus<any>;
+    req: any;
   };
   "POST /chat": {
     params: {};

@@ -7,11 +7,9 @@ import Profile from "./Profile";
 import Friends from "./Friends";
 
 import GameLayout from "../layouts/GameLayout";
-import { isUserAuthenticated } from "../utils";
 import Appbar from "../components/Appbar";
 
 export default function Game() {
-  const authenticated = isUserAuthenticated();
   return (
     <GameLayout
       appBar={<Appbar />}

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import { BrowserRouter } from "react-router-dom";
-import { CookiesProvider } from "react-cookie";
 import { ThemeProvider, CssBaseline, createMuiTheme } from "@material-ui/core";
 import red from "@material-ui/core/colors/red";
 import amber from "@material-ui/core/colors/amber";
@@ -18,15 +17,13 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <CookiesProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </CssBaseline>
-      </ThemeProvider>
-    </CookiesProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CssBaseline>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

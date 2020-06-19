@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -8,8 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 
-import { isUserAuthenticated } from "../utils";
+import { useUserAuthentication } from "../utils";
 import { CircularProgress } from "@material-ui/core";
+import { Login as LoginReqType } from "@csrf-challenge/common/src";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,14 +44,13 @@ export default function Login() {
   const classes = useStyles();
   const history = useHistory();
 
-  const [loginFormData, setLoginFormData] = React.useState({
+  const [loginFormData, setLoginFormData] = React.useState<LoginReqType>({
     username: "",
     password: "",
   });
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const [authenticated, setAuthenticate] = React.useState(false);
-  const [cookies] = useCookies();
+  const { authenticated, onLogin } = useUserAuthentication();
 
   const handleLoginFormChange = e =>
     setLoginFormData({
@@ -63,21 +62,18 @@ export default function Login() {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    // const result = await login(loginFormData);
-    const result = null;
+    const result = await onLogin(loginFormData);
     setLoading(false);
-    if (result) {
-      setAuthenticate(true);
+    if (authenticated) {
+      history.push("/game/dashboard");
     } else {
       setError(true);
     }
   };
 
-  React.useLayoutEffect(() => {
-    if (isUserAuthenticated()) {
-      history.push("/game/dashboard");
-    }
-  }, [history, authenticated]);
+  // React.useEffect(() => {
+
+  // }, [authenticated, history, setError]);
 
   return (
     <div className={classes.root}>

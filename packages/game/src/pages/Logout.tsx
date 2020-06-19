@@ -1,7 +1,6 @@
 import React from "react";
-import { logout } from "../utils";
+import { useUserAuthentication } from "../utils";
 import { useHistory } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 export default function Logout() {
   const rootStyle = {
@@ -12,13 +11,20 @@ export default function Logout() {
     alignItems: "center",
   };
   const history = useHistory();
-  const [cookies, setCookie, removeCookie] = useCookies(["sessionID"]);
+  const { authenticated, onLogout } = useUserAuthentication();
 
+  console.log("LOGGIN OUT");
   React.useEffect(() => {
-    removeCookie("sessionID");
+    async function logout() {
+      console.log("AWAIT");
+
+      await onLogout();
+      console.log("DONE");
+
+      history.push("/login");
+    }
     logout();
-    history.push("/login");
-  }, [history]);
+  }, [history, onLogout]);
 
   return <div style={rootStyle}>Logout</div>;
 }

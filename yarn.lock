@@ -1507,6 +1507,7 @@ __metadata:
   dependencies:
     "@csrf-challenge/common": ^1.0.0
     "@types/body-parser": ^1.19.0
+    "@types/cookie-parser": ^1.4.2
     "@types/cors": ^2.8.6
     "@types/express": ^4.17.3
     "@types/express-serve-static-core": ^4.17.3
@@ -1517,6 +1518,7 @@ __metadata:
     "@typescript-eslint/parser": ^2.25.0
     body-parser: ^1.19.0
     concurrently: ^5.1.0
+    cookie-parser: ^1.4.5
     cors: ^2.8.5
     dotenv: ^8.2.0
     eslint: ^6.8.0
@@ -1529,12 +1531,14 @@ __metadata:
     jest: ^24.9.0
     level: ^6.0.1
     lint-staged: ^10.0.8
+    moment: ^2.26.0
     node-fetch: ^2.6.0
     nodemon: ^2.0.2
     prettier: ^1.19.1
     ts-jest: ^24.3.0
     ts-node: ^8.6.2
     typescript: ^3.8.3
+    uuid: ^8.1.0
   languageName: unknown
   linkType: soft
 
@@ -1585,13 +1589,28 @@ __metadata:
     moment: ^2.26.0
     prettier: ^1.19.1
     react: ^16.13.1
-    react-cookie: ^4.0.3
+    react-cookies: ^0.1.1
     react-dom: ^16.13.1
     react-icons: ^3.10.0
     react-router-dom: ^5.2.0
     react-scripts: 3.4.1
     serve: ^11.3.0
     typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
+"@csrf-challenge/my-universe@workspace:packages/my-universe":
+  version: 0.0.0-use.local
+  resolution: "@csrf-challenge/my-universe@workspace:packages/my-universe"
+  dependencies:
+    body-parser: ^1.19.0
+    debug: ~2.6.9
+    express: ~4.16.1
+    http-errors: ~1.6.3
+    morgan: ~1.9.1
+    node-localstorage: ^2.1.6
+    pug: 2.0.0-beta11
+    uuid: ^8.1.0
   languageName: unknown
   linkType: soft
 
@@ -3315,10 +3334,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookie@npm:^0.3.3":
-  version: 0.3.3
-  resolution: "@types/cookie@npm:0.3.3"
-  checksum: 2/35d603d5e620ed8a0c4dedcf6b6e19e4981a4c44d40402de39e53f041ce74bf66b40272a355db37271b9557709fd3e6dfc8fe6ea4031f59b8b16cf0606ea3797
+"@types/cookie-parser@npm:^1.4.2":
+  version: 1.4.2
+  resolution: "@types/cookie-parser@npm:1.4.2"
+  dependencies:
+    "@types/express": "*"
+  checksum: 2/a27ce8cddf829def0afd59f8da71bf4d8ed8a91ae312bbd75464d6abd8aca8dff7a558ba20aee89a528619fb1758815f57f80f945a640825487778765cda81d5
   languageName: node
   linkType: hard
 
@@ -3382,16 +3403,6 @@ __metadata:
   version: 4.7.6
   resolution: "@types/history@npm:4.7.6"
   checksum: 2/8782d92953946314f7a4c76c2f47168f2fe6e43f01c31d44acac128638d8d5cd599247d2e593c3ed829387e8d48d8bf67155a3d0f7ce57e1920b9c1f2de10783
-  languageName: node
-  linkType: hard
-
-"@types/hoist-non-react-statics@npm:^3.0.1":
-  version: 3.3.1
-  resolution: "@types/hoist-non-react-statics@npm:3.3.1"
-  dependencies:
-    "@types/react": "*"
-    hoist-non-react-statics: ^3.3.0
-  checksum: 2/16ab4c45d4920fa378c8be76554b10061247fc04d2c8af11bdb7d520b3967e9c06d7ad5efd9b0f1657fbc4d095f62c6e1325f03b9141eb1ef2c8095b96fd42f8
   languageName: node
   linkType: hard
 
@@ -3513,13 +3524,6 @@ __metadata:
   version: 2.4.0
   resolution: "@types/normalize-package-data@npm:2.4.0"
   checksum: 2/6d077e73be7ac6227b678829c7bd765607136cdef537fd4ee7f368d9302a651aea924254d69826663322048436d90d6e7c679c9aa99c4824a687c568aab8ce4f
-  languageName: node
-  linkType: hard
-
-"@types/object-assign@npm:^4.0.30":
-  version: 4.0.30
-  resolution: "@types/object-assign@npm:4.0.30"
-  checksum: 2/dd9b5d5e183707bf4c1d911a98aa2d004b08ce901b8b52ac5231267997f5ebb933fad03528e8a39f1090d5cb572f6b0f0dd797912ee9815b8bb12312c85a43fc
   languageName: node
   linkType: hard
 
@@ -6623,7 +6627,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie-parser@npm:~1.4.4":
+"cookie-parser@npm:^1.4.5":
   version: 1.4.5
   resolution: "cookie-parser@npm:1.4.5"
   dependencies:
@@ -6640,14 +6644,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:0.3.1":
+"cookie@npm:0.3.1, cookie@npm:^0.3.1":
   version: 0.3.1
   resolution: "cookie@npm:0.3.1"
   checksum: 2/5fb6caf84d4e1f5684abae2a29d019466166a452539ef43562eaba5bf2f5d40a5cf0d0b4e46614fb8e6b408fd0c718885ba6696ce976e2c53d07216152ec7091
   languageName: node
   linkType: hard
 
-"cookie@npm:0.4.0, cookie@npm:^0.4.0":
+"cookie@npm:0.4.0":
   version: 0.4.0
   resolution: "cookie@npm:0.4.0"
   checksum: 2/7aaef4b642c533600fdd001d963a507dfcd814267503374e51d9743475d024feeff8b0b4ddd0777a25791a2efbdfd8bc4a0fe0696104efa195e8f8584807d410
@@ -9967,7 +9971,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.0.0, hoist-non-react-statics@npm:^3.1.0, hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.2":
+"hoist-non-react-statics@npm:^3.1.0, hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:
@@ -13486,22 +13490,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"myuniverse@workspace:packages/myuniverse":
-  version: 0.0.0-use.local
-  resolution: "myuniverse@workspace:packages/myuniverse"
-  dependencies:
-    body-parser: ^1.19.0
-    cookie-parser: ~1.4.4
-    debug: ~2.6.9
-    express: ~4.16.1
-    http-errors: ~1.6.3
-    morgan: ~1.9.1
-    node-localstorage: ^2.1.6
-    pug: 2.0.0-beta11
-    uuid: ^8.1.0
-  languageName: unknown
-  linkType: soft
-
 "mz@npm:^2.5.0":
   version: 2.7.0
   resolution: "mz@npm:2.7.0"
@@ -16394,16 +16382,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-cookie@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "react-cookie@npm:4.0.3"
+"react-cookies@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "react-cookies@npm:0.1.1"
   dependencies:
-    "@types/hoist-non-react-statics": ^3.0.1
-    hoist-non-react-statics: ^3.0.0
-    universal-cookie: ^4.0.0
-  peerDependencies:
-    react: ">= 16.3.0"
-  checksum: 2/9b2086b7916b2c92980ef31ed4b5f70e1112d3f8de27bf839aa61f81b42270e028a91cb2237683566f4a77f6da42099cf7166fe650c74106958ae9a29bb7acf1
+    cookie: ^0.3.1
+    object-assign: ^4.1.1
+  checksum: 2/40508dda5e8c067c2661d13215b73b1e40f3514016370e3e7bba774bfc259831e6d91f85fcdb3139a81f48397a593914a29579e074b23e34e19f74af9ebfbc04
   languageName: node
   linkType: hard
 
@@ -19534,18 +19519,6 @@ __metadata:
   dependencies:
     crypto-random-string: ^2.0.0
   checksum: 2/a2748b41eaada391800773c16674fe4e9a3f078162e49b2c6b4e67d36061a0f97be4b7851136d786ed5e4ddc90770400fd54bf32aed1e08ec9a9219d9b66bad3
-  languageName: node
-  linkType: hard
-
-"universal-cookie@npm:^4.0.0":
-  version: 4.0.3
-  resolution: "universal-cookie@npm:4.0.3"
-  dependencies:
-    "@types/cookie": ^0.3.3
-    "@types/object-assign": ^4.0.30
-    cookie: ^0.4.0
-    object-assign: ^4.1.1
-  checksum: 2/9dcb5ddc8c5b711089243ac61dcb7ec74ea60e795e72cf9192d22a90f6c99d905445d901d504e9af2e4b5276c4dd7d48fb5406bd5bfb49ae21fd1e4a182d1dd3
   languageName: node
   linkType: hard
 
