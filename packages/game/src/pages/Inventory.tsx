@@ -70,7 +70,8 @@ export default function Inventory() {
   const [selected, setSelected] = React.useState(null);
   const inventory = useRemoteData("GET /inventory", { params: {}, body: {} });
 
-  const handleSelection = invItem => setSelected(invItem);
+  const handleSelection = (invItem, index) =>
+    setSelected({ ...invItem, index });
 
   return (
     <MasterListLayout
@@ -109,8 +110,8 @@ function ItemList({ inventory, selected, onSelection }) {
           <Item
             key={index}
             item={item}
-            onClick={e => onSelection(item)}
-            selected={selected?.id === item.id}
+            onClick={e => onSelection(item, index)}
+            selected={selected?.index === index}
             button
           />
         ))}

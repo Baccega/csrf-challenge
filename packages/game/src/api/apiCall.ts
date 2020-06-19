@@ -11,6 +11,7 @@ export default async function apiCall<K extends keyof Endpoints>(
 
   const res = await fetch(config.apiURL + url, {
     method,
+    credentials: "include",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

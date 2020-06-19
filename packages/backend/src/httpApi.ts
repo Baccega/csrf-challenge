@@ -26,19 +26,20 @@ export default function createHttpApi() {
       const founded = verifyUser(username, password);
       if (Boolean(founded)) {
         const cookie = uuid();
-        const expires = moment().add(1, "days");
+        const expires = moment()
+          .add(1, "days")
+          .toDate()
+          .toUTCString();
 
         loginUser(founded, cookie);
 
         res.set(
           "Set-Cookie",
           `sessionToken=${cookie}; Expires=${expires}; SameSite=none; path=/; Secure;`
-          // `sessionToken=${cookie}; SameSite=Strict; path=/; Secure;`
         );
-        console.log("Cookie:" + cookie, "Expires:", expires.unix());
         res.status(200).send({
           status: "ok",
-          data: { cookie, expires: expires.unix() },
+          data: { cookie, expires: expires },
           error: null,
         });
       } else {

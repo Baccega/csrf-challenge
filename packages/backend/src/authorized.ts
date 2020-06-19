@@ -1,18 +1,14 @@
 import dataRef from "./data";
 import { User } from "@csrf-challenge/common/src";
 
-function findUser(cookies: any): User | null {
-  const user = dataRef.authenticatedUsers.find(c => c.cookie === cookies);
+function findUser(cookie: any): User | null {
+  const user = dataRef.authenticatedUsers.find(c => c.cookie === cookie);
 
-  // return authenticatedUser?.user || false;
   return user?.user || null;
 }
 
 export default async function authorized(req: any, res: any, next: any) {
-  console.log(JSON.stringify(req.cookies, null, 2));
-  // const foundUser = findUser(req.cookies); TODO
-  const foundUser = dataRef.users.find(u => u.username === "gary");
-  console.log("found: " + JSON.stringify(foundUser, null, 2));
+  const foundUser = findUser(req.cookies?.sessionToken);
 
   if (Boolean(foundUser)) {
     req.user = foundUser;
@@ -34,7 +30,6 @@ export function logoutUser(user: any): boolean {
   dataRef.authenticatedUsers = dataRef.authenticatedUsers.filter(
     u => u.user.username !== user.username
   );
-  console.log("AuthenticatedUsersAfterLogout:", dataRef.authenticatedUsers);
   return true;
 }
 
@@ -45,7 +40,6 @@ export function loginUser(user: User | null, cookie: string): boolean {
       ...dataRef.authenticatedUsers,
       { user, cookie },
     ];
-    console.log("AuthenticatedUsers:", dataRef.authenticatedUsers);
     return true;
   } else {
     return false;

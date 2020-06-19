@@ -13,14 +13,9 @@ export default function Logout() {
   const history = useHistory();
   const { authenticated, onLogout } = useUserAuthentication();
 
-  console.log("LOGGIN OUT");
   React.useEffect(() => {
     async function logout() {
-      console.log("AWAIT");
-
       await onLogout();
-      console.log("DONE");
-
       history.push("/login");
     }
     logout();

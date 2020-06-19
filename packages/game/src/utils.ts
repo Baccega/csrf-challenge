@@ -19,19 +19,7 @@ export function useUserAuthentication(): any {
           loginFormData
         );
         const data = result.data;
-        if (Boolean(data)) {
-          console.log("Arrived", data);
-          cookie.save("sessionToken", data.cookie, {
-            path: "/",
-            // expires: new Date(1592556805664),
-            expires: new Date(data.expires),
-            maxAge: 1000,
-            // domain: "127.0.0.1",
-            domain: "localhost",
-            secure: false,
-            httpOnly: false,
-          });
-          console.log("Saved");
+        if (Boolean(cookie.load("sessionToken"))) {
           setAuthenticated(true);
         }
       } catch (e) {
@@ -45,14 +33,13 @@ export function useUserAuthentication(): any {
     try {
       await logoutApi();
       cookie.remove("sessionToken");
-      setAuthenticated(false);
     } catch (e) {
       console.error(e);
     }
-  }, [setAuthenticated]);
+  }, []);
 
   return {
-    authenticated: true,
+    authenticated,
     onLogin: handleLogin,
     onLogout: handleLogout,
   };

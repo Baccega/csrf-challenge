@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/Baccega/csrf-challenge.git"
   },
+  "proxy": "https://localhost:3000",
   "scripts": {
     "start": "serve -s build",
     "dev": "react-scripts start",
