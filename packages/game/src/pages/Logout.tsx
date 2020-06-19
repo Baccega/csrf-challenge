@@ -11,7 +11,7 @@ export default function Logout() {
     alignItems: "center",
   };
   const history = useHistory();
-  const { authenticated, onLogout } = useUserAuthentication();
+  const { onLogout } = useUserAuthentication();
 
   React.useEffect(() => {
     async function logout() {

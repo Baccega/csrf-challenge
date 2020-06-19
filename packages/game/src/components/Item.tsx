@@ -1,25 +1,23 @@
 import React from "react";
 import {
   ListItem,
-  makeStyles,
+  // makeStyles,
   ListItemText,
   ListItemAvatar,
   Avatar,
-  ListItemSecondaryAction,
-  Typography,
 } from "@material-ui/core";
 import getItemIcon from "../assets/itemsIcons";
 
-const useStyles = makeStyles(theme => ({
-  itemListContainer: {
-    overflowY: "scroll",
-    height: "100%",
-  },
-  itemShowcase: {},
-}));
+// const useStyles = makeStyles(theme => ({
+//   itemListContainer: {
+//     overflowY: "scroll",
+//     height: "100%",
+//   },
+//   itemShowcase: {},
+// }));
 
 export default function Item({ item, ...rest }) {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   if (!Boolean(item)) {
     return null;

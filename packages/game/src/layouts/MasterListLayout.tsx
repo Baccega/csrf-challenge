@@ -2,9 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
-const TITLE_SIZE = 50;
-const FOOTER_SIZE = 70;
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",

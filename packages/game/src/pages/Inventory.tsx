@@ -1,18 +1,14 @@
 import React from "react";
 import MasterListLayout from "../layouts/MasterListLayout";
 import {
-  Paper,
   List,
-  ListItem,
   Avatar,
   makeStyles,
-  ListItemText,
   Typography,
   LinearProgress,
 } from "@material-ui/core";
 import Item from "../components/Item";
 import { INVENTORY_SIZE } from "@csrf-challenge/common/src/costants";
-import { useRemoteData } from "../api/hooks";
 import getItemIcon from "../assets/itemsIcons";
 import { IconContext } from "react-icons/lib";
 
@@ -65,10 +61,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Inventory() {
-  const classes = useStyles();
+export default function Inventory({ inventory }) {
+  // const classes = useStyles();
   const [selected, setSelected] = React.useState(null);
-  const inventory = useRemoteData("GET /inventory", { params: {}, body: {} });
 
   const handleSelection = (invItem, index) =>
     setSelected({ ...invItem, index });
@@ -87,7 +82,8 @@ export default function Inventory() {
   );
 }
 
-function ItemList({ inventory, selected, onSelection }) {
+// Lazy + no time
+export function ItemList({ inventory, selected, onSelection }) {
   const classes = useStyles();
 
   if (inventory == null) {

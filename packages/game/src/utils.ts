@@ -1,9 +1,7 @@
 import React from "react";
 import cookie from "react-cookies";
 import { loginApi, logoutApi } from "./api/endpoints";
-import { LoginResponse } from "@csrf-challenge/common/src/Login";
-import { Login } from "@csrf-challenge/common/dist";
-import { ResponseStatus } from "@csrf-challenge/common/dist/Endpoints";
+import { Login } from "@csrf-challenge/common/src";
 
 export function useUserAuthentication(): any {
   const sessionToken = cookie.load("sessionToken");
@@ -15,10 +13,7 @@ export function useUserAuthentication(): any {
     async (loginFormData: Login) => {
       try {
         cookie.remove("sessionToken");
-        const result: ResponseStatus<LoginResponse> = await loginApi(
-          loginFormData
-        );
-        const data = result.data;
+        await loginApi(loginFormData);
         if (Boolean(cookie.load("sessionToken"))) {
           setAuthenticated(true);
         }

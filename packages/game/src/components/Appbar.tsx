@@ -3,7 +3,7 @@ import { makeStyles, Typography, Button } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaSignOutAlt } from "react-icons/fa";
-import { GiBackpack, GiCrestedHelmet, GiThreeFriends } from "react-icons/gi";
+import { GiBackpack, GiThreeFriends } from "react-icons/gi";
 import { MdSend } from "react-icons/md";
 
 const useStyles = makeStyles(theme => ({

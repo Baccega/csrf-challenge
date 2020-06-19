@@ -26,7 +26,6 @@ export function verifyUser(username: string, password: string): User | null {
 }
 
 export function logoutUser(user: any): boolean {
-  console.log(JSON.stringify(user, null, 2));
   dataRef.authenticatedUsers = dataRef.authenticatedUsers.filter(
     u => u.user.username !== user.username
   );

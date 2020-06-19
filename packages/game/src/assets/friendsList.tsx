@@ -1,5 +1,3 @@
-import React from "react";
-
 // No need to be on the backend
 
 export interface Friend {

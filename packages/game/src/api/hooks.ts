@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 import { Endpoints } from "@csrf-challenge/common";
 import { ResType, ParamsType } from "@csrf-challenge/common/src/utils";

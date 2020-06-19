@@ -2,8 +2,6 @@ import React from "react";
 import { makeStyles, List } from "@material-ui/core";
 
 import { Typography } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
-import BigBullet from "@material-ui/icons/FiberManualRecord";
 
 import { FriendsList, Friend } from "../assets/friendsList";
 

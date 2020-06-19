@@ -1,12 +1,11 @@
 import React from "react";
 import {
   ListItem,
-  makeStyles,
+  // makeStyles,
   ListItemText,
   ListItemAvatar,
   Avatar,
   ListItemSecondaryAction,
-  Typography,
 } from "@material-ui/core";
 import { green, red } from "@material-ui/core/colors";
 import { FaUser } from "react-icons/fa";
@@ -14,26 +13,28 @@ import BigBullet from "@material-ui/icons/FiberManualRecord";
 
 import { Friend } from "../assets/friendsList";
 
-const useStyles = makeStyles(theme => ({
-  itemListContainer: {
-    overflowY: "scroll",
-    height: "100%",
-  },
-  itemShowcase: {},
-}));
+// const useStyles = makeStyles(theme => ({
+//   itemListContainer: {
+//     overflowY: "scroll",
+//     height: "100%",
+//   },
+//   itemShowcase: {},
+// }));
 
 type FriendProps = {
   friend: Friend;
   selected: boolean;
+  alwaysEnabled?: boolean;
   onSelect: (friend: Friend) => void;
 };
 
 export default function FriendListItem({
   friend,
+  alwaysEnabled = false,
   onSelect,
   ...rest
 }: FriendProps) {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   const handleClick = () => {
     onSelect(friend);
@@ -42,7 +43,7 @@ export default function FriendListItem({
   return (
     <ListItem
       button
-      disabled={!friend.online}
+      disabled={alwaysEnabled ? false : !friend.online}
       onClick={handleClick}
       key={friend.name}
       {...rest}

@@ -2,9 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
-const TITLE_SIZE = 50;
-const FOOTER_SIZE = 70;
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -15,7 +12,8 @@ const useStyles = makeStyles(theme => ({
     gridTemplateAreas: "'first second third'",
     gridGap: theme.spacing(2),
     [theme.breakpoints.down("sm")]: {
-      gridTemplateAreas: "'first first' 'second second' 'third third'",
+      gridTemplateAreas:
+        "'first first first' 'second second second' 'third third third'",
     },
   },
   first: {

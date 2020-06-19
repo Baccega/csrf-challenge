@@ -8,8 +8,11 @@ import Friends from "./Friends";
 
 import GameLayout from "../layouts/GameLayout";
 import Appbar from "../components/Appbar";
+import { useRemoteData } from "../api/hooks";
 
 export default function Game() {
+  const inventory = useRemoteData("GET /inventory", { params: {}, body: {} });
+
   return (
     <GameLayout
       appBar={<Appbar />}
@@ -22,10 +25,10 @@ export default function Game() {
             <Dashboard />
           </Route>
           <Route path="/game/inventory">
-            <Inventory />
+            <Inventory inventory={inventory} />
           </Route>
           <Route path="/game/send-item">
-            <Send />
+            <Send inventory={inventory} />
           </Route>
           <Route path="/game/friends">
             <Friends />
