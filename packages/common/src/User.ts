@@ -7,5 +7,5 @@ export type User = {
 };
 export type AuthenticatedUser = {
   cookie: string;
-  user: User;
+  username: string;
 };

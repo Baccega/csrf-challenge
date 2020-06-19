@@ -11,6 +11,7 @@ import Item from "../components/Item";
 import { INVENTORY_SIZE } from "@csrf-challenge/common/src/costants";
 import getItemIcon from "../assets/itemsIcons";
 import { IconContext } from "react-icons/lib";
+import { useRefreashableRemoteData } from "../api/hooks";
 
 const AVATAR_SIZE = 200;
 
@@ -61,8 +62,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Inventory({ inventory }) {
+export default function Inventory() {
   // const classes = useStyles();
+  const { data, onReload } = useRefreashableRemoteData("GET /inventory", {
+    params: {},
+    body: {},
+  });
+  const inventory = data;
   const [selected, setSelected] = React.useState(null);
 
   const handleSelection = (invItem, index) =>

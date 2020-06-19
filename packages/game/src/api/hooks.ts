@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import { Endpoints } from "@csrf-challenge/common";
 import { ResType, ParamsType } from "@csrf-challenge/common/src/utils";
@@ -23,4 +23,28 @@ export function useRemoteData<K extends keyof Endpoints>(
   }, [endpoint, params]);
 
   return data?.data;
+}
+
+export function useRefreashableRemoteData<K extends keyof Endpoints>(
+  endpoint: K,
+  params?: ParamsType<K>
+) {
+  const [data, setData] = useState<ResType<K> | null>(null);
+  const [counter, setCounter] = useState<number>(0);
+
+  const handleReload = useCallback(() => setCounter(p => p + 1), [setCounter]);
+
+  useEffect(() => {
+    async function loadData() {
+      const received = await apiCall(endpoint, {
+        params: params || {},
+        body: null,
+      });
+      setData(received);
+    }
+
+    loadData();
+  }, [endpoint, params, counter]);
+
+  return { data: data?.data, onReload: handleReload };
 }

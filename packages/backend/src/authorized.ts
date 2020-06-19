@@ -2,9 +2,11 @@ import dataRef from "./data";
 import { User } from "@csrf-challenge/common/src";
 
 function findUser(cookie: any): User | null {
-  const user = dataRef.authenticatedUsers.find(c => c.cookie === cookie);
+  const username = dataRef.authenticatedUsers.find(c => c.cookie === cookie)
+    ?.username;
+  const user = dataRef.users.find(u => u.username === username);
 
-  return user?.user || null;
+  return user || null;
 }
 
 export default async function authorized(req: any, res: any, next: any) {
@@ -27,7 +29,7 @@ export function verifyUser(username: string, password: string): User | null {
 
 export function logoutUser(user: any): boolean {
   dataRef.authenticatedUsers = dataRef.authenticatedUsers.filter(
-    u => u.user.username !== user.username
+    u => u.username !== user.username
   );
   return true;
 }
@@ -37,7 +39,7 @@ export function loginUser(user: User | null, cookie: string): boolean {
     logoutUser(user);
     dataRef.authenticatedUsers = [
       ...dataRef.authenticatedUsers,
-      { user, cookie },
+      { username: user?.username, cookie },
     ];
     return true;
   } else {
