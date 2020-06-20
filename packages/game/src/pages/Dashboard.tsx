@@ -1,13 +1,5 @@
 import React from "react";
-import { makeStyles, List } from "@material-ui/core";
-
-import { Typography } from "@material-ui/core";
-
-import { FriendsList, Friend } from "../assets/friendsList";
-
-import FriendListItem from "../components/FriendListItem";
-import MasterListLayout from "../layouts/MasterListLayout";
-import Chat from "../components/Chat";
+import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   emptyContainer: {
