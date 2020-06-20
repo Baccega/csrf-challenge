@@ -1,6 +1,7 @@
 import dataRef from "./data";
 import { User } from "@csrf-challenge/common/src";
 import { AuthenticatedUser } from "@csrf-challenge/common/src/User";
+import { generateRandomItem } from "./inventory";
 
 function findUser(cookie: any): User | null {
   const username = dataRef.authenticatedUsers.find(c => c.cookie === cookie)
@@ -45,10 +46,6 @@ export function loginUser(user: User | null, cookie: string): boolean {
     logoutUser(user);
     const auth: AuthenticatedUser = { username: user?.username, cookie };
     dataRef.authenticatedUsers.push(auth);
-    console.log(
-      "LOGGED users: ",
-      JSON.stringify(dataRef.authenticatedUsers, null, 2)
-    );
     return true;
   } else {
     return false;
@@ -56,8 +53,22 @@ export function loginUser(user: User | null, cookie: string): boolean {
 }
 
 export function createUser(username: string, password: string): User {
-  const user: User = { username, password, inventory: [] };
+  const user: User = {
+    username,
+    password,
+    inventory: [
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+      generateRandomItem(),
+    ],
+  };
   dataRef.users.push(user);
-  console.log("CURRENT USERS:", JSON.stringify(dataRef.users, null, 2));
   return user;
 }

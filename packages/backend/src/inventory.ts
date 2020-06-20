@@ -1,6 +1,7 @@
-import { User } from "@csrf-challenge/common/src";
+import { User, Item } from "@csrf-challenge/common/src";
 import generateFlag from "./flag";
 import dataRef from "./data";
+import { itemsList } from "../assets/itemsList";
 
 // Ugly
 export function removeItem(position: number, user: User): void {
@@ -13,4 +14,8 @@ export function addFlag(to: string): void {
     ...dataRef.users[userIndex].inventory,
     generateFlag(),
   ];
+}
+
+export function generateRandomItem(): Item {
+  return itemsList[Math.floor(Math.random() * itemsList.length)];
 }
