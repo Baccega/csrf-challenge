@@ -1,5 +1,7 @@
 # CSRF Challenge
 
+The flag can be set in the environment of the backend: `packages/backend/.env`
+
 To run it use:
 ```bash
 yarn docker-build
@@ -7,15 +9,16 @@ yarn docker-run
 ```
 
 Game frontend available in: `http://localhost:5500`
-Chat frontend available in: `http://localhost:5501`
 
-In order to run the CSRF attack you need to build a website in `http://localhost:5000`
+Game backend available in: `http://localhost:3000`
+
+In order to run the CSRF attack you need to build a website in My-Universe:
+
+My-Universe frontend available in: `http://localhost:3001`
+
 
 Scripts availables:
 
 ```bash
-yarn start  (Chat + Game + Backend)
-yarn start-chat  (Chat)
-yarn start-game  (Game)
-yarn start-backend  (Backend)
+yarn dev  (Game + My-Universe + Backend)
 ```
