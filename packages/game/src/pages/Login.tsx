@@ -75,7 +75,7 @@ export default function Login() {
     <div className={classes.root}>
       <form onSubmit={handleSubmit}>
         <Paper className={classes.formContainer}>
-          <Typography variant="h5">Game</Typography>
+          <Typography variant="h5">Items mailbox</Typography>
           <div className="fieldsContainer">
             <TextField
               fullWidth
