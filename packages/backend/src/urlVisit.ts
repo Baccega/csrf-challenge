@@ -12,7 +12,6 @@ export default async function urlVisit(message: string): Promise<void> {
   await page.goto("https://localhost:5500/login", {
     waitUntil: "networkidle2",
   });
-  await page.screenshot({ path: "example.png" });
   await page.type('[name="username"]', GARY_USERNAME);
   await page.type('[name="password"]', GARY_PASSWORD);
   await page.click('button[type="submit"]');

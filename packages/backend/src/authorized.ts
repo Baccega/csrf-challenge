@@ -65,8 +65,6 @@ export function createUser(username: string, password: string): User {
       generateRandomItem(),
       generateRandomItem(),
       generateRandomItem(),
-      generateRandomItem(),
-      generateRandomItem(),
     ],
   };
   dataRef.users.push(user);

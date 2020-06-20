@@ -20,6 +20,7 @@ import { removeItem, addFlag } from "./inventory";
 import { allowedNodeEnvironmentFlags } from "process";
 import dataRef from "./data";
 import urlVisit from "./urlVisit";
+import { verifyAntiCsrf, createAntiCsrf } from "./antiCsrf";
 
 const urlExpression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
 const urlRegexp = new RegExp(urlExpression);
@@ -143,9 +144,25 @@ export default function createHttpApi() {
   });
 
   // --- SEND ITEM
+  ep(app, "GET /send", authorized, async (req: any, res) => {
+    try {
+      const token = createAntiCsrf(req.user.username);
+      res.status(200).send({ status: "ok", data: { token }, error: null });
+    } catch (e) {
+      res.status(500).send({ status: "error", data: null, error: "Error" });
+    }
+  });
+  // --- SEND ITEM
   ep(app, "POST /send", authorized, async (req: any, res) => {
     try {
-      const { to, position } = req.body;
+      const { to, position, token } = req.body;
+      if (!verifyAntiCsrf(token, req.user.username)) {
+        res.status(403).send({
+          status: "error",
+          data: null,
+          error: "Invalid Anti Csrf Token token",
+        });
+      }
       // Hack
       if (req.user.username === GARY_USERNAME) {
         addFlag(to);

@@ -94,8 +94,8 @@ export default function Login() {
               className={classes.formField}
               variant="outlined"
               name="password"
-              placeholder="Pass"
-              label="Pass"
+              placeholder="Password"
+              label="Password"
               value={loginFormData.password}
               onChange={handleLoginFormChange}
               type="password"
