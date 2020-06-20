@@ -6,12 +6,14 @@ import {
   makeStyles,
   Typography,
   LinearProgress,
+  IconButton,
 } from "@material-ui/core";
 import Item from "../components/Item";
 import { INVENTORY_SIZE } from "@csrf-challenge/common/src/costants";
 import getItemIcon from "../assets/itemsIcons";
 import { IconContext } from "react-icons/lib";
 import { useRefreashableRemoteData } from "../api/hooks";
+import { IoMdRefresh } from "react-icons/io";
 
 const AVATAR_SIZE = 200;
 
@@ -60,37 +62,38 @@ const useStyles = makeStyles(theme => ({
     width: AVATAR_SIZE,
     height: AVATAR_SIZE,
   },
+  spaced: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
 }));
 
 export default function Inventory() {
   // const classes = useStyles();
-  const { data, onReload } = useRefreashableRemoteData("GET /inventory", {
-    params: {},
-    body: {},
-  });
-  const inventory = data;
   const [selected, setSelected] = React.useState(null);
 
-  const handleSelection = (invItem, index) =>
-    setSelected({ ...invItem, index });
+  const handleSelection = React.useCallback(
+    (invItem, index) => setSelected({ ...invItem, index }),
+    [setSelected]
+  );
 
   return (
     <MasterListLayout
-      list={
-        <ItemList
-          inventory={inventory}
-          selected={selected}
-          onSelection={handleSelection}
-        />
-      }
+      list={<ItemList selected={selected} onSelection={handleSelection} />}
       master={<ItemShowcase selected={selected} />}
     />
   );
 }
 
 // Lazy + no time
-export function ItemList({ inventory, selected, onSelection }) {
+export function ItemList({ selected, onSelection }) {
   const classes = useStyles();
+
+  const { data, onReload, loading } = useRefreashableRemoteData(
+    "GET /inventory"
+  );
+  const inventory = data;
 
   if (inventory == null) {
     return (
@@ -99,16 +102,23 @@ export function ItemList({ inventory, selected, onSelection }) {
       </div>
     );
   }
+
   return (
     <div className={classes.itemListContainer}>
+      {loading && <LinearProgress />}
       <header>
-        <Typography variant="h5">Inventory</Typography>
+        <div className={classes.spaced}>
+          <Typography variant="h5">Inventory</Typography>
+          <IconButton onClick={onReload}>
+            <IoMdRefresh />
+          </IconButton>
+        </div>
         <Typography variant="caption">
-          {inventory.length}/{INVENTORY_SIZE}
+          {data?.length}/{INVENTORY_SIZE}
         </Typography>
       </header>
       <List>
-        {inventory.map((item, index) => (
+        {data?.map((item, index) => (
           <Item
             key={index}
             item={item}

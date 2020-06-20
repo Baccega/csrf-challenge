@@ -30,21 +30,24 @@ export function useRefreashableRemoteData<K extends keyof Endpoints>(
   params?: ParamsType<K>
 ) {
   const [data, setData] = useState<ResType<K> | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(0);
 
   const handleReload = useCallback(() => setCounter(p => p + 1), [setCounter]);
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       const received = await apiCall(endpoint, {
         params: params || {},
         body: null,
       });
       setData(received);
+      setLoading(false);
     }
 
     loadData();
   }, [endpoint, params, counter]);
 
-  return { data: data?.data, onReload: handleReload };
+  return { data: data?.data, onReload: handleReload, loading };
 }

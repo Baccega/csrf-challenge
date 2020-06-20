@@ -10,6 +10,7 @@ import BigBullet from "@material-ui/icons/FiberManualRecord";
 import ChatLayout from "../layouts/ChatLayout";
 import ChatInput from "../components/ChatInput";
 import { sendMessageApi } from "../api/endpoints";
+import { GARY_USERNAME } from "@csrf-challenge/common/src/costants";
 
 const useStyles = makeStyles(theme => ({
   listRoot: {
@@ -75,7 +76,7 @@ export default function Chat() {
       title={
         <>
           <BigBullet fontSize="small" style={{ color: green[500] }} />
-          <Typography variant="h6">Gary</Typography>
+          <Typography variant="h6">{GARY_USERNAME}</Typography>
         </>
       }
       chatMessagges={

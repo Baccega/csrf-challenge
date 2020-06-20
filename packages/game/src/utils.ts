@@ -13,13 +13,15 @@ export function useUserAuthentication(): any {
     async (loginFormData: Login) => {
       try {
         cookie.remove("sessionToken");
-        await loginApi(loginFormData);
-        if (Boolean(cookie.load("sessionToken"))) {
+        const result = await loginApi(loginFormData);
+        if (result.status === "ok") {
           setAuthenticated(true);
+          return true;
         }
       } catch (e) {
         console.error(e);
         setAuthenticated(false);
+        return false;
       }
     },
     [setAuthenticated]
@@ -27,10 +29,10 @@ export function useUserAuthentication(): any {
   const handleLogout = React.useCallback(async () => {
     try {
       await logoutApi();
-      cookie.remove("sessionToken");
     } catch (e) {
       console.error(e);
     }
+    cookie.remove("sessionToken");
   }, []);
 
   return {

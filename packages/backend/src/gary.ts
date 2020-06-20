@@ -1,5 +1,9 @@
 import { Message, User } from "@csrf-challenge/common/src";
 import { Item } from "@csrf-challenge/common/src/Item";
+import {
+  GARY_USERNAME,
+  GARY_PASSWORD,
+} from "@csrf-challenge/common/src/costants";
 
 const fallbackMessagges: string[] = [
   "Yes, I think so",
@@ -38,7 +42,7 @@ export function getRandomGaryVisitingUrlPhrase(): string {
 
 export function getRandomGaryMessage(visitingUrl = false): Message {
   return {
-    sender: "Gary",
+    sender: GARY_USERNAME,
     text: visitingUrl
       ? getRandomGaryVisitingUrlPhrase()
       : getRandomGaryFallbackPhrase(),
@@ -47,8 +51,8 @@ export function getRandomGaryMessage(visitingUrl = false): Message {
 
 export function createGary(): User {
   return {
-    username: "gary",
-    password: "gary", //TODO
+    username: GARY_USERNAME,
+    password: GARY_PASSWORD, //TODO
     inventory: DEFAULT_INVENTORY,
   };
 }

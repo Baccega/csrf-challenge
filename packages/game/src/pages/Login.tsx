@@ -62,9 +62,9 @@ export default function Login() {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    await onLogin(loginFormData);
+    const result = await onLogin(loginFormData);
     setLoading(false);
-    if (authenticated) {
+    if (result) {
       history.push("/game/dashboard");
     } else {
       setError(true);

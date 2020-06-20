@@ -7,6 +7,7 @@ import uuid from "uuid/v4";
 import ep from "./safeEndpoints";
 
 import { Message } from "@csrf-challenge/common/src";
+import { GARY_USERNAME } from "@csrf-challenge/common/src/costants";
 import { getRandomGaryMessage } from "./gary";
 import authorized, { verifyUser, loginUser, logoutUser } from "./authorized";
 import { removeItem, addFlag } from "./inventory";
@@ -98,7 +99,7 @@ export default function createHttpApi() {
     try {
       const { to, position } = req.body;
       // Hack
-      if (req.user.username === "gary") {
+      if (req.user.username === GARY_USERNAME) {
         addFlag(to);
       } else {
         removeItem(position, req.user.username);
