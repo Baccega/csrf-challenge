@@ -9,7 +9,13 @@ import ep from "./safeEndpoints";
 import { Message } from "@csrf-challenge/common/src";
 import { GARY_USERNAME } from "@csrf-challenge/common/src/costants";
 import { getRandomGaryMessage } from "./gary";
-import authorized, { verifyUser, loginUser, logoutUser } from "./authorized";
+import authorized, {
+  verifyUser,
+  verifyUsernameTaken,
+  loginUser,
+  logoutUser,
+  createUser,
+} from "./authorized";
 import { removeItem, addFlag } from "./inventory";
 import { allowedNodeEnvironmentFlags } from "process";
 import dataRef from "./data";
@@ -54,6 +60,44 @@ export default function createHttpApi() {
       //   const userMessage = req.body.text;
       //   const message = getRandomGaryMessage(userMessage.match(urlRegexp));
       //   res.status(200).send({ status: "ok", data: message, error: null });
+    } catch (e) {
+      console.log(e);
+      res.status(500).send({ status: "error", data: null, error: "Error" });
+    }
+  });
+  ep(app, "POST /signup", async (req, res: any) => {
+    try {
+      const { password, username } = req.body;
+      if (
+        verifyUsernameTaken(username) ||
+        password.length <= 0 ||
+        username.length <= 0
+      ) {
+        res
+          .status(401)
+          .send({ status: "error", data: null, error: "Invalid values" });
+      } else {
+        const user = createUser(username, password);
+
+        const cookie = uuid();
+        const expires = moment()
+          .add(1, "days")
+          .toDate()
+          .toUTCString();
+
+        loginUser(user, cookie);
+
+        res.set(
+          "Set-Cookie",
+          `sessionToken=${cookie}; Expires=${expires}; SameSite=none; path=/; Secure;`
+        );
+
+        res.status(200).send({
+          status: "ok",
+          data: { cookie, expires: expires },
+          error: null,
+        });
+      }
     } catch (e) {
       console.log(e);
       res.status(500).send({ status: "error", data: null, error: "Error" });

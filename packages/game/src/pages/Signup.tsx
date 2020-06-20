@@ -7,9 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 
-import { useUserAuthentication } from "../utils";
 import { CircularProgress } from "@material-ui/core";
-import { Login as LoginReqType } from "@csrf-challenge/common/src";
+import { signUpApi } from "../api/endpoints";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   formContainer: {
     padding: theme.spacing(4),
     width: "300px",
-    height: "400px",
+    height: "500px",
     display: "grid",
     gridTemplateRows: "70px auto 50px",
     "& > .fieldsContainer": {
@@ -40,34 +39,41 @@ const useStyles = makeStyles(theme => ({
   formField: {},
 }));
 
-export default function Login() {
+export default function Signup() {
   const classes = useStyles();
   const history = useHistory();
 
-  const [loginFormData, setLoginFormData] = React.useState<LoginReqType>({
+  const [formData, setFormData] = React.useState({
     username: "",
     password: "",
+    verifyPassword: "",
   });
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const { onLogin } = useUserAuthentication();
 
   const handleLoginFormChange = e =>
-    setLoginFormData({
-      ...loginFormData,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
     });
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setError(null);
-    setLoading(true);
-    const result = await onLogin(loginFormData);
-    setLoading(false);
-    if (result) {
-      history.push("/game/dashboard");
-    } else {
+    if (formData.password !== formData.verifyPassword) {
       setError(true);
+    } else {
+      setError(null);
+      setLoading(true);
+      const result = await signUpApi({
+        username: formData.username,
+        password: formData.password,
+      });
+      setLoading(false);
+      if (result.status === "ok") {
+        history.push("/game/dashboard");
+      } else {
+        setError(true);
+      }
     }
   };
 
@@ -75,7 +81,7 @@ export default function Login() {
     <div className={classes.root}>
       <form onSubmit={handleSubmit}>
         <Paper className={classes.formContainer}>
-          <Typography variant="h5">Game</Typography>
+          <Typography variant="h5">Sign up</Typography>
           <div className="fieldsContainer">
             <TextField
               fullWidth
@@ -85,7 +91,7 @@ export default function Login() {
               name="username"
               placeholder="Username"
               label="Username"
-              value={loginFormData.username}
+              value={formData.username}
               onChange={handleLoginFormChange}
             />
             <TextField
@@ -94,33 +100,52 @@ export default function Login() {
               className={classes.formField}
               variant="outlined"
               name="password"
-              placeholder="Pass"
-              label="Pass"
-              value={loginFormData.password}
+              placeholder="Password"
+              label="Password"
+              value={formData.password}
               onChange={handleLoginFormChange}
               type="password"
             />
-            {error && <Alert severity="error">Login failed</Alert>}
+            <TextField
+              fullWidth
+              margin="none"
+              className={classes.formField}
+              variant="outlined"
+              name="verifyPassword"
+              placeholder="Verify password"
+              label="Verify password"
+              value={formData.verifyPassword}
+              onChange={handleLoginFormChange}
+              type="password"
+            />
+            {error && (
+              <Alert severity="error">
+                Username already taken or invalid password verification
+              </Alert>
+            )}
             {loading && <CircularProgress color="secondary" />}
           </div>
           <div className="buttonsContainer">
             {loading}
             <Button
-              // onClick={() => console.log("signup")}
               variant="outlined"
               color="secondary"
               component={Link}
-              to="/signup"
+              to="/login"
             >
-              Sign up
+              Sign In
             </Button>
             <Button
               type="submit"
-              disabled={loading}
+              disabled={
+                loading ||
+                formData.password.length === 0 ||
+                formData.username.length === 0
+              }
               variant="outlined"
               color="primary"
             >
-              Sign in
+              Sign up
             </Button>
           </div>
         </Paper>

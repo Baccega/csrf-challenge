@@ -13,6 +13,10 @@ export async function loginApi(loginData: Login) {
   return apiCall("POST /login", { params: {}, body: loginData });
 }
 
+export async function signUpApi(formData: Login) {
+  return apiCall("POST /signup", { params: {}, body: formData });
+}
+
 export async function logoutApi() {
   return rawApiCall("POST /logout", { params: {}, body: {} });
 }

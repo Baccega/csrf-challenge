@@ -12,6 +12,11 @@ export default interface Endpoints {
     res: ResponseStatus<LoginResponse>;
     req: Login;
   };
+  "POST /signup": {
+    params: {};
+    res: ResponseStatus<LoginResponse>;
+    req: Login;
+  };
   "POST /logout": {
     params: {};
     res: ResponseStatus<any>;

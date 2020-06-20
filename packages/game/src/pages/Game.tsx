@@ -8,7 +8,6 @@ import Friends from "./Friends";
 
 import GameLayout from "../layouts/GameLayout";
 import Appbar from "../components/Appbar";
-import { useRemoteData } from "../api/hooks";
 
 export default function Game() {
   return (

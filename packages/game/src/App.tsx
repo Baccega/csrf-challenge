@@ -5,6 +5,7 @@ import { useUserAuthentication } from "./utils";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Game from "./pages/Game";
+import Signup from "./pages/Signup";
 
 function RedirectToLogin(props) {
   return <Redirect to={{ pathname: "/login" }} />;
@@ -26,7 +27,7 @@ export default function App() {
       </Route>
       <Route path="/login" component={Login} />
       <Route path="/logout" component={Logout} />
-      <Route path="/signup" component={Logout} />
+      <Route path="/signup" component={Signup} />
       <ProtectedRoute authenticated={authenticated}>
         <Route path="/game" component={Game} />
       </ProtectedRoute>
