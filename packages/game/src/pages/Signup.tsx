@@ -68,7 +68,7 @@ export default function Signup() {
         username: formData.username,
         password: formData.password,
       });
-      localStorage.setItem("b64Token", result.data.encodedToken);
+      result.data && localStorage.setItem("b64Token", result.data.encodedToken);
       setLoading(false);
       if (result.status === "ok") {
         history.push("/game/dashboard");

@@ -73,6 +73,8 @@ export default function Inventory() {
   // const classes = useStyles();
   const [selected, setSelected] = React.useState(null);
 
+  const inventoryData = useRefreashableRemoteData("GET /inventory");
+
   const handleSelection = React.useCallback(
     (invItem, index) => setSelected({ ...invItem, index }),
     [setSelected]
@@ -80,19 +82,23 @@ export default function Inventory() {
 
   return (
     <MasterListLayout
-      list={<ItemList selected={selected} onSelection={handleSelection} />}
+      list={
+        <ItemList
+          inventoryData={inventoryData}
+          selected={selected}
+          onSelection={handleSelection}
+        />
+      }
       master={<ItemShowcase selected={selected} />}
     />
   );
 }
 
 // Lazy + no time
-export function ItemList({ selected, onSelection }) {
+export function ItemList({ inventoryData, selected, onSelection }) {
   const classes = useStyles();
 
-  const { data, onReload, loading } = useRefreashableRemoteData(
-    "GET /inventory"
-  );
+  const { data, onReload, loading } = inventoryData;
   const inventory = data;
 
   if (inventory == null) {

@@ -8,6 +8,7 @@ import ThreeListLayout from "../layouts/ThreeListLayout";
 import FriendListItem from "../components/FriendListItem";
 import { ItemList } from "./Inventory";
 import { sendItemApi } from "../api/endpoints";
+import { useRefreashableRemoteData } from "../api/hooks";
 
 const useStyles = makeStyles(theme => ({
   listRoot: {
@@ -30,6 +31,7 @@ export default function Send() {
   const [selectedFriend, setSelectedFriend] = React.useState<Friend>(null);
   const [selectedItem, setSelectedItem] = React.useState(null);
   const [loading, setLoading] = React.useState<boolean>(false);
+  const inventoryData = useRefreashableRemoteData("GET /inventory");
 
   const handleSelectFriend = friend => {
     if (!loading) {
@@ -45,6 +47,7 @@ export default function Send() {
     setLoading(true);
     const token = localStorage.getItem("b64Token");
     await sendItemApi(selectedFriend.name, selectedItem.index, token);
+    inventoryData.onReload();
     setLoading(false);
   };
 
@@ -94,7 +97,11 @@ export default function Send() {
       }
       second={
         selectedFriend ? (
-          <ItemList onSelection={handleSelectItem} selected={selectedItem} />
+          <ItemList
+            inventoryData={inventoryData}
+            onSelection={handleSelectItem}
+            selected={selectedItem}
+          />
         ) : (
           noFriendSelected
         )
