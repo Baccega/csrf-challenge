@@ -8,7 +8,7 @@ export interface Item {
 export interface SendItem {
   to: string;
   position: number;
-  token: string;
+  encodedToken: string;
 }
 
 // No time for this

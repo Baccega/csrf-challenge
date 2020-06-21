@@ -1,12 +1,15 @@
 import apiCall, { rawApiCall } from "./apiCall";
 import { Message, Login } from "@csrf-challenge/common";
 
-export function sendItemApi(to: string, position: number, token: string) {
-  return apiCall("POST /send", { params: {}, body: { to, position, token } });
-}
-
-export function getAntiCsrfTokenApi() {
-  return apiCall("GET /send", { params: {}, body: {} });
+export function sendItemApi(
+  to: string,
+  position: number,
+  encodedToken: string
+) {
+  return apiCall("POST /send", {
+    params: {},
+    body: { to, position, encodedToken },
+  });
 }
 
 export function sendMessageApi(message: Message) {

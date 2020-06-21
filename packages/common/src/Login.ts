@@ -6,4 +6,5 @@ export default interface Login {
 export interface LoginResponse {
   cookie: string;
   expires: string;
+  encodedToken: string;
 }

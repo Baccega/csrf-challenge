@@ -14,6 +14,7 @@ export function useUserAuthentication(): any {
       try {
         cookie.remove("sessionToken");
         const result = await loginApi(loginFormData);
+        localStorage.setItem("b64Token", result.data.encodedToken);
         if (result.status === "ok") {
           setAuthenticated(true);
           return true;

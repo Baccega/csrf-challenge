@@ -6,10 +6,6 @@ export type ResponseStatus<T = null, E extends string = string> =
   | { status: "ok"; data: T; error: null }
   | { status: "error"; data: null; error: E };
 
-type AntiCsrfToken = {
-  token: string;
-};
-
 export default interface Endpoints {
   "POST /login": {
     params: {};
@@ -34,11 +30,6 @@ export default interface Endpoints {
   "GET /inventory": {
     params: {};
     res: ResponseStatus<Item[]>;
-    req: any;
-  };
-  "GET /send": {
-    params: {};
-    res: ResponseStatus<AntiCsrfToken>;
     req: any;
   };
   "POST /send": {

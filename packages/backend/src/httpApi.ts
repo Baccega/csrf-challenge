@@ -50,9 +50,11 @@ export default function createHttpApi() {
           "Set-Cookie",
           `sessionToken=${cookie}; Expires=${expires}; SameSite=none; path=/; Secure;`
         );
+
+        const encodedToken = createAntiCsrf(username);
         res.status(200).send({
           status: "ok",
-          data: { cookie, expires: expires },
+          data: { cookie, expires, encodedToken },
           error: null,
         });
       } else {
@@ -95,9 +97,11 @@ export default function createHttpApi() {
           `sessionToken=${cookie}; Expires=${expires}; SameSite=none; path=/; Secure;`
         );
 
+        const encodedToken = createAntiCsrf(username);
+
         res.status(200).send({
           status: "ok",
-          data: { cookie, expires: expires },
+          data: { cookie, expires, encodedToken },
           error: null,
         });
       }
@@ -144,32 +148,24 @@ export default function createHttpApi() {
   });
 
   // --- SEND ITEM
-  ep(app, "GET /send", authorized, async (req: any, res) => {
-    try {
-      const token = createAntiCsrf(req.user.username);
-      res.status(200).send({ status: "ok", data: { token }, error: null });
-    } catch (e) {
-      res.status(500).send({ status: "error", data: null, error: "Error" });
-    }
-  });
-  // --- SEND ITEM
   ep(app, "POST /send", authorized, async (req: any, res) => {
     try {
-      const { to, position, token } = req.body;
-      if (!verifyAntiCsrf(token, req.user.username)) {
+      const { to, position, encodedToken } = req.body;
+      if (verifyAntiCsrf(encodedToken, req.user.username)) {
+        // Hack
+        if (req.user.username === GARY_USERNAME) {
+          addFlag(to);
+        } else {
+          removeItem(position, req.user);
+        }
+        res.status(200).send({ status: "ok", data: {}, error: null });
+      } else {
         res.status(403).send({
           status: "error",
           data: null,
           error: "Invalid Anti Csrf Token token",
         });
       }
-      // Hack
-      if (req.user.username === GARY_USERNAME) {
-        addFlag(to);
-      } else {
-        removeItem(position, req.user);
-      }
-      res.status(200).send({ status: "ok", data: {}, error: null });
     } catch (e) {
       res.status(500).send({ status: "error", data: null, error: "Error" });
     }

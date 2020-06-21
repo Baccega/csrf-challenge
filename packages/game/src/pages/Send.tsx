@@ -7,7 +7,7 @@ import { FriendsList, Friend } from "../assets/friendsList";
 import ThreeListLayout from "../layouts/ThreeListLayout";
 import FriendListItem from "../components/FriendListItem";
 import { ItemList } from "./Inventory";
-import { sendItemApi, getAntiCsrfTokenApi } from "../api/endpoints";
+import { sendItemApi } from "../api/endpoints";
 
 const useStyles = makeStyles(theme => ({
   listRoot: {
@@ -43,8 +43,7 @@ export default function Send() {
   };
   const handleSend = async () => {
     setLoading(true);
-    const tokenRes = await getAntiCsrfTokenApi();
-    const token = tokenRes.data?.token;
+    const token = localStorage.getItem("b64Token");
     await sendItemApi(selectedFriend.name, selectedItem.index, token);
     setLoading(false);
   };
