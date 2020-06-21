@@ -27,7 +27,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --jsx \"preserve\"",
     "dev": "tsc -w",
     "lint": "eslint --ext js,ts,tsx src",
     "format": "prettier --list-different --write \"{scripts,src}/**/*.{js,md,tsx,ts,html,json}\"",

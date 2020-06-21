@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "node --async-stack-traces dist/backend/src/index.js",
-    "build": "tsc",
+    "build": "tsc  --jsx \"preserve\"",
     "test": "jest",
     "dev": "nodemon -e ts -w ./src -x ts-node src/index.ts",
     "lint": "eslint --ext js,ts,tsx src",

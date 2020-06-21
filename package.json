@@ -19,9 +19,10 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"npm run start-game\" \"npm run start-backend\"",
+    "start": "concurrently --kill-others \"npm run start-game\" \"npm run start-backend\" \"npm run start-my-universe\"",
     "start-game": "lerna run start --stream --scope @csrf-challenge/game",
     "start-backend": "lerna run start --stream --scope @csrf-challenge/backend",
+    "start-my-universe": "lerna run start --stream --scope @csrf-challenge/my-universe",
     "dev": "concurrently --kill-others  \"npm run dev-common\" \"npm run dev-game\" \"npm run dev-backend\" \"npm run dev-universe\"",
     "dev-game": "lerna run dev --scope @csrf-challenge/game",
     "dev-backend": "lerna run dev --stream --scope @csrf-challenge/backend",
@@ -32,7 +33,7 @@
     "build-common": "lerna run build --stream --scope @csrf-challenge/common",
     "build-game": "lerna run build --stream --scope @csrf-challenge/game",
     "docker-build": "docker build -t csrf-challenge .",
-    "docker-run": "npm run docker-build && TODO",
+    "docker-run": "docker run -d -p 3000:3000 -p 5500:5500 -p 3001:3001 csrf-challenge",
     "format": "lerna run format --stream",
     "lint": "lerna run lint --stream"
   },

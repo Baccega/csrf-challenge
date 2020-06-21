@@ -1,9 +1,10 @@
-FROM node:12
+FROM node:12.16.1
 
 WORKDIR /usr/src/app
 
 EXPOSE 8080
 EXPOSE 3000
+EXPOSE 3001
 
 COPY package.json ./
 COPY lerna.json ./
@@ -12,7 +13,6 @@ COPY packages/ packages
 
 RUN yarn
 
-RUN yarn build-common
-RUN yarn build-backend
+RUN yarn build
 
 CMD [ "yarn", "start" ]

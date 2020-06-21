@@ -37,7 +37,7 @@ export default function Appbar() {
   return (
     <IconContext.Provider value={{ size: "1.4em" }}>
       <div className={classes.root}>
-        <Typography variant="h6">Items mailbox</Typography>
+        <Typography variant="h6">Items Mailbox</Typography>
         <nav className={classes.linkContainer}>
           <Button
             color={getMyColor("/game/inventory")}

@@ -11,7 +11,6 @@ import Alert from "@material-ui/lab/Alert";
 import { useUserAuthentication } from "../utils";
 import { CircularProgress } from "@material-ui/core";
 import { Login as LoginReqType } from "@csrf-challenge/common/src";
-import { FaCookie } from "react-icons/fa";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,7 +82,7 @@ export default function Login() {
     <div className={classes.root}>
       <form onSubmit={handleSubmit}>
         <Paper className={classes.formContainer}>
-          <Typography variant="h5">Items mailbox</Typography>
+          <Typography variant="h5">Items Mailbox</Typography>
           <div className="fieldsContainer">
             <TextField
               fullWidth

@@ -2,7 +2,7 @@ export interface Item {
   id: string;
   name: string;
   description: string;
-  icon?: JSX.Element;
+  icon?: any;
 }
 
 export interface SendItem {
