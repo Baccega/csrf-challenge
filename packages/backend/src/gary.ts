@@ -1,9 +1,9 @@
 import { Message, User } from "@csrf-challenge/common/src";
-import { Item } from "@csrf-challenge/common/src/Item";
+import { Item } from "@csrf-challenge/common/dist/Item";
 import {
   GARY_USERNAME,
   GARY_PASSWORD,
-} from "@csrf-challenge/common/src/costants";
+} from "@csrf-challenge/common/dist/costants";
 
 const fallbackMessagges: string[] = [
   "Yes, I think so",

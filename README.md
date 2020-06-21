@@ -10,7 +10,7 @@ yarn docker-build
 yarn docker-run
 ```
 
-Game frontend available in: `https://localhost:5500`
+Game frontend available in: `https://localhost:5000`
 
 Game backend available in: `https://localhost:3000`
 

@@ -2,14 +2,14 @@ import puppeteer from "puppeteer";
 import {
   GARY_USERNAME,
   GARY_PASSWORD,
-} from "@csrf-challenge/common/src/costants";
+} from "@csrf-challenge/common/dist/costants";
 
 export default async function urlVisit(message: string): Promise<void> {
   const browser = await puppeteer.launch({
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-  await page.goto("https://localhost:5500/login", {
+  await page.goto("https://localhost:5000/login", {
     waitUntil: "networkidle2",
   });
   await page.type('[name="username"]', GARY_USERNAME);

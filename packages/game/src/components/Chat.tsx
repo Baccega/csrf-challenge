@@ -1,5 +1,5 @@
 import React from "react";
-import Message from "@csrf-challenge/common/src/Message";
+import Message from "@csrf-challenge/common/dist/Message";
 import classnames from "classnames";
 import { makeStyles } from "@material-ui/core";
 
@@ -10,7 +10,7 @@ import BigBullet from "@material-ui/icons/FiberManualRecord";
 import ChatLayout from "../layouts/ChatLayout";
 import ChatInput from "../components/ChatInput";
 import { sendMessageApi } from "../api/endpoints";
-import { GARY_USERNAME } from "@csrf-challenge/common/src/costants";
+import { GARY_USERNAME } from "@csrf-challenge/common/dist/costants";
 
 const useStyles = makeStyles(theme => ({
   listRoot: {

@@ -1,6 +1,6 @@
 import dataRef from "./data";
 import { User } from "@csrf-challenge/common/src";
-import { AuthenticatedUser } from "@csrf-challenge/common/src/User";
+import { AuthenticatedUser } from "@csrf-challenge/common/dist/User";
 import { generateRandomItem } from "./inventory";
 
 function findUser(cookie: any): User | null {

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { Endpoints } from "@csrf-challenge/common";
-import { ResType, ParamsType } from "@csrf-challenge/common/src/utils";
+import { ResType, ParamsType } from "@csrf-challenge/common/dist/utils";
 import apiCall from "./apiCall";
 
 export function useRemoteData<K extends keyof Endpoints>(

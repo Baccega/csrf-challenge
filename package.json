@@ -33,7 +33,7 @@
     "build-common": "lerna run build --stream --scope @csrf-challenge/common",
     "build-game": "lerna run build --stream --scope @csrf-challenge/game",
     "docker-build": "docker build -t csrf-challenge .",
-    "docker-run": "docker run -d -p 3000:3000 -p 5500:5500 -p 3001:3001 csrf-challenge",
+    "docker-run": "docker run -p 3000:3000 -p 5000:5000 -p 3001:3001 csrf-challenge",
     "format": "lerna run format --stream",
     "lint": "lerna run lint --stream"
   },

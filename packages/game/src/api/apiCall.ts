@@ -1,5 +1,9 @@
 import { Endpoints, utils } from "@csrf-challenge/common";
-import { ParamsType, ResType, ReqType } from "@csrf-challenge/common/src/utils";
+import {
+  ParamsType,
+  ResType,
+  ReqType,
+} from "@csrf-challenge/common/dist/utils";
 import config from "../config";
 
 export default async function apiCall<K extends keyof Endpoints>(

@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import Item from "../components/Item";
-import { INVENTORY_SIZE } from "@csrf-challenge/common/src/costants";
+import { INVENTORY_SIZE } from "@csrf-challenge/common/dist/costants";
 import getItemIcon from "../assets/itemsIcons";
 import { IconContext } from "react-icons/lib";
 import { useRefreashableRemoteData } from "../api/hooks";

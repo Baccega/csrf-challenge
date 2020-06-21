@@ -1,4 +1,4 @@
-import { AuthenticatedUser } from "@csrf-challenge/common/src/User";
+import { AuthenticatedUser } from "@csrf-challenge/common/dist/User";
 import { User } from "@csrf-challenge/common/src";
 import { createGary } from "./gary";
 

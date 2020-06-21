@@ -7,7 +7,7 @@ import uuid from "uuid/v4";
 import ep from "./safeEndpoints";
 
 import { Message } from "@csrf-challenge/common/src";
-import { GARY_USERNAME } from "@csrf-challenge/common/src/costants";
+import { GARY_USERNAME } from "@csrf-challenge/common/dist/costants";
 import { getRandomGaryMessage, getRandomGaryVisitingUrlPhrase } from "./gary";
 import authorized, {
   verifyUser,

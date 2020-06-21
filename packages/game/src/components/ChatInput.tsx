@@ -1,5 +1,5 @@
 import React, { FormEvent, ChangeEvent } from "react";
-import Message from "@csrf-challenge/common/src/Message";
+import Message from "@csrf-challenge/common/dist/Message";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, IconButton } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
