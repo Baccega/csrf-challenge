@@ -1,6 +1,6 @@
 // No need to be on the backend
 
-import { GARY_USERNAME } from "@csrf-challenge/common/src/costants";
+import { GARY_USERNAME } from "@csrf-challenge/common/dist/costants";
 
 export interface Friend {
   name: string;
@@ -9,7 +9,7 @@ export interface Friend {
 
 export const FriendsList: Friend[] = [
   { name: GARY_USERNAME, online: true },
-  { name: "Dude", online: false },
-  { name: "Other dude", online: false },
-  { name: "Sad", online: false },
+  { name: "Mark", online: false },
+  { name: "John", online: false },
+  { name: "Jack", online: false },
 ];
