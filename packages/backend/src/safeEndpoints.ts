@@ -9,25 +9,16 @@ import {
 } from "@csrf-challenge/common/dist/utils";
 
 export default function safeEndpoint<K extends keyof Endpoints>(
-  app: ReturnType<typeof express>,
+  app: any,
   endpoint: K,
   ...handlers: RequestHandler<ParamsType<K>, ResType<K>, ReqType<K>>[]
 ) {
   if (endpoint.startsWith("GET ")) {
-    app.get<ParamsType<K>, ResType<K>, ReqType<K>>(
-      endpoint.substr("GET ".length),
-      ...handlers
-    );
+    app.get(endpoint.substr("GET ".length), ...handlers);
   } else if (endpoint.startsWith("POST ")) {
-    app.post<ParamsType<K>, ResType<K>, ReqType<K>>(
-      endpoint.substr("POST ".length),
-      ...handlers
-    );
+    app.post(endpoint.substr("POST ".length), ...handlers);
   } else if (endpoint.startsWith("PUT ")) {
-    app.put<ParamsType<K>, ResType<K>, ReqType<K>>(
-      endpoint.substr("PUT ".length),
-      ...handlers
-    );
+    app.put(endpoint.substr("PUT ".length), ...handlers);
   } else {
     throw new Error("Not implemented");
   }

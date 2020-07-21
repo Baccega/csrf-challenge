@@ -9,7 +9,7 @@ export default async function urlVisit(message: string): Promise<void> {
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-  await page.goto("https://localhost:5000/login", {
+  await page.goto("https://localhost:3000", {
     waitUntil: "networkidle2",
   });
   await page.type('[name="username"]', GARY_USERNAME);

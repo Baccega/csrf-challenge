@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 import moment from "moment";
 import uuid from "uuid/v4";
 import ep from "./safeEndpoints";
@@ -31,9 +32,15 @@ export default function createHttpApi() {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(cors());
+  const gameFolder =
+    process.env.NODE_ENV === "production"
+      ? "../../../../game/build/"
+      : "../../game/build/";
+  app.use(express.static(path.join(__dirname, gameFolder)));
+  const router = express.Router();
 
   // --- AUTH
-  ep(app, "POST /login", async (req, res: any) => {
+  ep(router, "POST /login", async (req, res: any) => {
     try {
       const { password, username } = req.body;
       const founded = verifyUser(username, password);
@@ -70,7 +77,7 @@ export default function createHttpApi() {
       res.status(500).send({ status: "error", data: null, error: "Error" });
     }
   });
-  ep(app, "POST /signup", async (req, res: any) => {
+  ep(router, "POST /signup", async (req, res: any) => {
     try {
       const { password, username } = req.body;
       if (
@@ -111,7 +118,7 @@ export default function createHttpApi() {
     }
   });
 
-  ep(app, "POST /logout", authorized, async (req: any, res) => {
+  ep(router, "POST /logout", authorized, async (req: any, res) => {
     try {
       logoutUser(req.user);
       res.status(200).send({ status: "ok", data: {}, error: null });
@@ -121,7 +128,7 @@ export default function createHttpApi() {
   });
 
   // --- CHAT
-  ep(app, "POST /chat", authorized, async (req: any, res) => {
+  ep(router, "POST /chat", authorized, async (req: any, res) => {
     try {
       const userMessage = req.body.text;
       const isUrl = userMessage.startsWith("http://localhost:3001");
@@ -137,7 +144,7 @@ export default function createHttpApi() {
     }
   });
 
-  ep(app, "GET /inventory", authorized, async (req: any, res) => {
+  ep(router, "GET /inventory", authorized, async (req: any, res) => {
     try {
       const inventory = req.user.inventory;
 
@@ -148,7 +155,7 @@ export default function createHttpApi() {
   });
 
   // --- SEND ITEM
-  ep(app, "POST /send", authorized, async (req: any, res) => {
+  ep(router, "POST /send", authorized, async (req: any, res) => {
     try {
       const { to, position, encodedToken } = req.body;
       if (verifyAntiCsrf(encodedToken, req.user.username)) {
@@ -171,5 +178,6 @@ export default function createHttpApi() {
     }
   });
 
+  app.use("/api", router);
   return app;
 }

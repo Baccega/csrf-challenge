@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
-import cookie from "react-cookies";
+// import cookie from "react-cookies";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -53,11 +53,11 @@ export default function Login() {
   const [loading, setLoading] = React.useState(false);
   const { onLogin } = useUserAuthentication();
 
-  React.useLayoutEffect(() => {
-    if (Boolean(cookie.load("sessionToken"))) {
-      history.push("/game/dashboard");
-    }
-  }, [history]);
+  // React.useLayoutEffect(() => {
+  //   if (Boolean(cookie.load("sessionToken"))) {
+  //     history.push("/game/dashboard");
+  //   }
+  // }, [history]);
 
   const handleLoginFormChange = e =>
     setLoginFormData({

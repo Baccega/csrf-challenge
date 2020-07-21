@@ -12,6 +12,7 @@ const port = process.env.NODE_PORT ? parseInt(process.env.NODE_PORT, 10) : 3000;
 
 async function main() {
   const httpApi = createHttpApi();
+
   const httpsServer = https.createServer(credentials, httpApi);
   await new Promise(resolve => {
     httpsServer.listen(port, "0.0.0.0", resolve);
