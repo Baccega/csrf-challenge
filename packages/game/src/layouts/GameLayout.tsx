@@ -6,8 +6,7 @@ const TITLE_SIZE = 50;
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100vw",
-    height: "100vh",
-    overflow: "hidden",
+    minHeight: "100vh",
     display: "grid",
     gridTemplateRows: `${TITLE_SIZE}px auto`,
     "& > header": {

@@ -18,14 +18,17 @@ const useStyles = makeStyles(theme => ({
   },
   first: {
     height: "100%",
+    minHeight: 400,
     gridArea: "first",
   },
   second: {
     height: "100%",
+    minHeight: 400,
     gridArea: "second",
   },
   third: {
     height: "100%",
+    minHeight: 400,
     gridArea: "third",
   },
 }));
