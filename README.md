@@ -32,7 +32,7 @@ As the name suggest, the token is ENCODED, not encrypted, in particular the enco
 If you try to see what's inside a token you'll see something like: `YOUR_USERNAME;1592748359915`.
 The number represents the timestamp of the login.
 
-All of this mean is that if we forge a token to be like: `Gary;CURRENT_TIMESTAMP` this could be a valid token.
+All of this mean is that if we forge a token to be something like: `Gary;CURRENT_TIMESTAMP`, this could be a valid token.
 
 
 ## How to fix the vunnerability
@@ -44,7 +44,7 @@ The best way is to avoid using cookie entirely, or at least using them the prope
 
 > The flag can be set in the environment of the backend: `packages/backend/.env`
 
-> The backend needs to work with https, the certificates are stored in : `packages/backend/sslcert`
+> The backend needs to work with https, the certificates are stored in : `/sslcert`
 
 To run it use:
 ```bash
@@ -52,9 +52,13 @@ yarn docker-build
 yarn docker-run
 ```
 
-Game frontend available in: `https://localhost:5000`
+If you don't want to use docker, you can use:
+```bash
+yarn build
+yarn start
+```
 
-Game backend available in: `https://localhost:3000`
+The challenge frontend available at: `https://localhost:3000`
 
 In order to run the CSRF attack you need to build a website in My-Universe:
 
