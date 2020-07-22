@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "tsc --jsx \"preserve\"",
-    "dev": "tsc -w",
+    "dev": "tsc -w --jsx \"preserve\"",
     "lint": "eslint --ext js,ts,tsx src",
     "format": "prettier --list-different --write \"{scripts,src}/**/*.{js,md,tsx,ts,html,json}\"",
     "precommit": "lint-staged"

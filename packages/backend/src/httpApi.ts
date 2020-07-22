@@ -160,7 +160,7 @@ export default function createHttpApi() {
       const { to, position, encodedToken } = req.body;
       if (verifyAntiCsrf(encodedToken, req.user.username)) {
         // Hack
-        if (req.user.username === GARY_USERNAME) {
+        if (req.user.username.toUpperCase() === GARY_USERNAME.toUpperCase()) {
           addFlag(to);
         } else {
           removeItem(position, req.user);

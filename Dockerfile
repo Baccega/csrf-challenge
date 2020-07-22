@@ -2,7 +2,6 @@ FROM node:12.16.1
 
 WORKDIR /usr/src/app
 
-EXPOSE 8080
 EXPOSE 3000
 EXPOSE 3001
 
