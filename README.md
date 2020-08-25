@@ -42,21 +42,32 @@ The best way is to avoid using cookie entirely, or at least using them the prope
 
 ## Deploy
 
-> The flag can be set in the environment of the backend: `packages/backend/.env`
-
-> The backend needs to work with https, the certificates are stored in : `/sslcert`
+> The backend NEEDS to work with https, the certificates are stored in : `packages/backend/sslcert`
 
 To run it use:
 ```bash
 yarn docker-build
-yarn docker-run
+docker run 
+  -p 3000:3000 
+  -p 3001:3001 
+  csrf-challenge
 ```
+
+You can even set environment variables directly in the `docker run`  using the `-e` flags:
+```bash
+-e FLAG=SUPER_SECRET_FLAG 
+-e MY_UNIVERSE_URL=http://localhost:3001 
+```
+
+`MY_UNIVERSE_URL` you need to insert the url of the MY_UNIVERSE application (this is the URL that the game is allow to visit) 
 
 If you don't want to use docker, you can use:
 ```bash
 yarn build
 yarn start
 ```
+
+You can change the environment variables at `/packages/backend/.env`
 
 The challenge frontend available at: `https://localhost:3000`
 
