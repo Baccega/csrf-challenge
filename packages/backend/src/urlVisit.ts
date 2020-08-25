@@ -7,6 +7,7 @@ import {
 export default async function urlVisit(message: string): Promise<void> {
   const browser = await puppeteer.launch({
     ignoreHTTPSErrors: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.goto("https://localhost:3000", {
@@ -14,7 +15,12 @@ export default async function urlVisit(message: string): Promise<void> {
   });
   await page.type('[name="username"]', GARY_USERNAME);
   await page.type('[name="password"]', GARY_PASSWORD);
-  await page.click('button[type="submit"]');
+  await Promise.all([
+    page.waitForNavigation(),
+    page.click('button[type="submit"]'),
+  ]);
+
+  const cookies = await page.cookies();
 
   await page.goto(message, { waitUntil: "networkidle2" });
   await browser.close();

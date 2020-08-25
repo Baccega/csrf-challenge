@@ -6,6 +6,7 @@ import path from "path";
 import moment from "moment";
 import uuid from "uuid/v4";
 import ep from "./safeEndpoints";
+import logger from "morgan";
 
 import { Message } from "@csrf-challenge/common/src";
 import { GARY_USERNAME } from "@csrf-challenge/common/dist/costants";
@@ -31,6 +32,7 @@ export default function createHttpApi() {
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
+  app.use(logger("dev"));
   app.use(cors());
   const gameFolder =
     process.env.NODE_ENV === "production"
@@ -131,16 +133,22 @@ export default function createHttpApi() {
   ep(router, "POST /chat", authorized, async (req: any, res) => {
     try {
       const userMessage = req.body.text;
-      const isUrl = userMessage.startsWith("http://localhost:3001");
+      const isUrl = userMessage.startsWith(process.env.MY_UNIVERSE_URL);
       const message = getRandomGaryMessage(isUrl);
 
+      console.log("IS:", isUrl, process.env.MY_UNIVERSE_URL);
       if (isUrl) {
         await urlVisit(userMessage);
       }
 
       res.status(200).send({ status: "ok", data: message, error: null });
     } catch (e) {
-      res.status(500).send({ status: "error", data: null, error: "Error" });
+      console.log(JSON.stringify(e, null, 2));
+      res.status(500).send({
+        status: "error",
+        data: e,
+        error: "Error",
+      });
     }
   });
 
@@ -150,7 +158,7 @@ export default function createHttpApi() {
 
       res.status(200).send({ status: "ok", data: inventory, error: null });
     } catch (e) {
-      res.status(500).send({ status: "error", data: null, error: "Error" });
+      res.status(500).send({ status: "error", data: e, error: "Error" });
     }
   });
 
@@ -174,10 +182,15 @@ export default function createHttpApi() {
         });
       }
     } catch (e) {
-      res.status(500).send({ status: "error", data: null, error: "Error" });
+      console.log(JSON.stringify(e, null, 2));
+      res.status(500).send({ status: "error", data: e, error: "Error" });
     }
   });
 
   app.use("/api", router);
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, gameFolder));
+  });
   return app;
 }

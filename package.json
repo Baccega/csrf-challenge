@@ -32,7 +32,7 @@
     "build-common": "lerna run build --stream --scope @csrf-challenge/common",
     "build-game": "lerna run build --stream --scope @csrf-challenge/game",
     "docker-build": "docker build -t csrf-challenge .",
-    "docker-run": "docker run -e NODE_PORT=3000 -e FLAG=SUPER_SECRET_FLAG -e PORT=443 -e HTTPS=true -p 3000:3000 -p 5000:443 -p 3001:3001 csrf-challenge",
+    "docker-run": "docker run --shm-size 1G -e NODE_PORT=3000 -e FLAG=SUPER_SECRET_FLAG2 -e MY_UNIVERSE_URL=http://localhost:3001 -e HTTPS=true -p 3000:3000 -p 3001:3001 csrf-challenge",
     "format": "lerna run format --stream",
     "lint": "lerna run lint --stream"
   },
